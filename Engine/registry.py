@@ -43,3 +43,6 @@ class Registry:
 
     def __len__(self):
         return len(self._objects)
+    
+    def __iter__(self):
+        return iter(self._objects)

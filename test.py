@@ -1,33 +1,22 @@
 from config import DATA_DIR
 
-from Engine.resource_loader import ResourceLoader
+from Engine.game import Game
 
 
-loader = ResourceLoader(DATA_DIR)
-
-
-game_data = loader.load_all()
-
-
-print(
-    game_data.items.get("oak_log")
+game = Game(
+    DATA_DIR
 )
 
 
-print(
-    game_data.trees.get("oak_tree")
-)
+game.start()
 
 
-print(
-    game_data.skills.get("woodcutting")
-    
-)
-print(
-    game_data.skills.get("mining")
-    
-)
+print(game.data)
 
-print(
-    game_data.monsters.get("cow")
-)
+print()
+
+print(game.player)
+
+print()
+
+print(game.player.skills)

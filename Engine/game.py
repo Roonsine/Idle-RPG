@@ -1,46 +1,81 @@
-"""
-The main Game object.
-
-This owns every major game system.
-"""
-
-from config import DATA_DIR
+from pathlib import Path
 
 from Engine.resource_loader import ResourceLoader
-from Engine.xp import XPSystem
+from Engine.game_data import GameData
+
+from Player import Player
+from Models.player_skill import PlayerSkill
 
 
 class Game:
+    """
+    Main game controller.
 
-    def __init__(self):
+    Holds:
+    - loaded content
+    - current player
+    - game state
+    """
 
-        self.loader = ResourceLoader(DATA_DIR)
+    def __init__(self, data_directory: Path):
 
-        self.xp = XPSystem()
+        self.loader = ResourceLoader(
+            data_directory
+        )
 
-        self.player = None
+        self.data: GameData | None = None
 
-        self.items = {}
+        self.player: Player | None = None
 
-        self.trees = {}
 
-        self.monsters = {}
+    def load(self):
+        """
+        Load all static game content.
+        """
 
-        self.skills = {}
+        self.data = self.loader.load_all()
 
-    def load_data(self):
-        """Load all JSON resources."""
 
-        self.items = self.loader.items()
+    def create_player(self, name: str):
+        """
+        Create a new player.
 
-        self.trees = self.loader.trees()
+        Gives the player every available skill
+        at level 1.
+        """
 
-        self.monsters = self.loader.monsters()
+        if self.data is None:
+            raise RuntimeError(
+                "Game data has not been loaded."
+            )
 
-        self.skills = self.loader.skills()
+
+        self.player = Player(
+            name=name
+        )
+
+
+        for skill_id in self.data.skills:
+
+            skill = PlayerSkill(
+                skill_id=skill_id,
+                level=1,
+                xp=0
+            )
+
+            self.player.skills[skill_id] = skill
+
 
     def start(self):
+        """
+        Start the game.
+        """
 
-        self.load_data()
+        if self.data is None:
+            self.load()
 
-        print("Game started.")
+
+        if self.player is None:
+            self.create_player(
+                "Player"
+            )
