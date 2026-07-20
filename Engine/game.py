@@ -2,6 +2,7 @@ from pathlib import Path
 
 from Engine.resource_loader import ResourceLoader
 from Engine.game_data import GameData
+from Engine.action_manager import ActionManager
 
 from Player import Player
 from Models.player_skill import PlayerSkill
@@ -27,6 +28,21 @@ class Game:
 
         self.player: Player | None = None
 
+        self.action_manager = ActionManager()
+
+    def update(self):
+
+        if self.player is None:
+            return
+
+
+        result = self.action_manager.tick(
+            self.player,
+            self.data
+        )
+
+
+        return result
 
     def load(self):
         """

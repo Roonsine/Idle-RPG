@@ -28,3 +28,19 @@ class Player:
     )
 
     gold: int = 0
+
+    def add_xp(self, amount: float):
+
+        self.xp += amount
+
+        self.check_level_up()
+    
+    def check_level_up(self):
+
+        while self.xp >= self.xp_for_next_level():
+
+            self.level += 1
+
+    def xp_for_next_level(self):
+
+        return self.level * 100
