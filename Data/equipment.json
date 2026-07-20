@@ -1,0 +1,13 @@
+[
+    {
+        "id": "bronze_sword_equipment",
+        "item_id": "bronze_sword",
+        "slot": "weapon",
+        "attack_bonus": 5,
+        "strength_bonus": 4,
+        "defence_bonus": 0,
+        "magic_bonus": 0,
+        "ranged_bonus": 0,
+        "description": "A basic bronze sword."
+    }
+]

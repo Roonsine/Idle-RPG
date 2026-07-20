@@ -1,0 +1,23 @@
+[
+    {
+        "id": "woodcutting",
+        "name": "Woodcutting",
+        "description": "Chop trees to gather logs.",
+        "max_level": 99,
+        "icon": "woodcutting.png"
+    },
+    {
+        "id": "mining",
+        "name": "Mining",
+        "description": "Mine rocks to gather ores and minerals.",
+        "max_level": 99,
+        "icon": "mining.png"
+    },
+    {
+        "id": "smithing",
+        "name": "Smithing",
+        "description": "Create equipment from materials.",
+        "max_level": 99,
+        "icon": "smithing.png"
+    }
+]

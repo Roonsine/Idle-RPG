@@ -1,0 +1,52 @@
+[
+    {
+        "id": "normal_log",
+        "name": "Normal Log",
+        "description": "A basic log obtained from trees.",
+        "value": 2,
+        "category": "Material",
+        "rarity": "Common",
+        "stackable": true,
+        "icon": "normal_log.png"
+    },
+    {
+        "id": "oak_log",
+        "name": "Oak Log",
+        "description": "A sturdy oak log.",
+        "value": 5,
+        "category": "Material",
+        "rarity": "Common",
+        "stackable": true,
+        "icon": "oak_log.png"
+    },
+    {
+        "id": "bird_nest",
+        "name": "Bird Nest",
+        "description": "Something a bird left behind.",
+        "value": 10,
+        "category": "Material",
+        "rarity": "Uncommon",
+        "stackable": true,
+        "icon": "bird_nest.png"
+    },
+    {
+        "id": "bones",
+        "name": "Bones",
+        "description": "Remains of a creature.",
+        "value": 1,
+        "category": "Material",
+        "rarity": "Common",
+        "stackable": true,
+        "icon": "bones.png"
+    },
+    {
+        "id": "cow_hide",
+        "name": "Cow Hide",
+        "description": "A piece of leather material.",
+        "value": 15,
+        "category": "Material",
+        "rarity": "Common",
+        "stackable": true,
+        "icon": "cow_hide.png"
+    }
+]

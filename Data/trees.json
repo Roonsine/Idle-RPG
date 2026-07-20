@@ -1,0 +1,22 @@
+[
+    {
+        "id": "normal_tree",
+        "name": "Normal Tree",
+        "level_required": 1,
+        "xp": 25,
+        "interval": 3.0,
+        "log_item_id": "normal_log",
+        "depletion_chance": 0.0,
+        "respawn_time": 0.0
+    },
+    {
+        "id": "oak_tree",
+        "name": "Oak Tree",
+        "level_required": 15,
+        "xp": 37.5,
+        "interval": 4.0,
+        "log_item_id": "oak_log",
+        "depletion_chance": 0.0,
+        "respawn_time": 0.0
+    }
+]

@@ -1,0 +1,26 @@
+[
+    {
+        "id": "cow",
+        "name": "Cow",
+        "description": "A peaceful farm animal.",
+        "hitpoints": 8,
+        "attack_level": 1,
+        "strength_level": 1,
+        "defence_level": 1,
+        "attack_speed": 4.0,
+        "drops": [
+            {
+                "item_id": "bones",
+                "chance": 1.0,
+                "min_quantity": 1,
+                "max_quantity": 1
+            },
+            {
+                "item_id": "cow_hide",
+                "chance": 0.5,
+                "min_quantity": 1,
+                "max_quantity": 1
+            }
+        ]
+    }
+]

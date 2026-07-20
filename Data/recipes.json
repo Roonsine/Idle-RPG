@@ -1,0 +1,18 @@
+[
+    {
+        "id": "bronze_bar",
+        "name": "Bronze Bar",
+        "skill_id": "smithing",
+        "inputs": {
+            "copper_ore": 1,
+            "tin_ore": 1
+        },
+        "outputs": {
+            "bronze_bar": 1
+        },
+        "level_required": 1,
+        "xp": 12.5,
+        "interval": 5.0,
+        "description": "Smelt copper and tin into bronze."
+    }
+]
