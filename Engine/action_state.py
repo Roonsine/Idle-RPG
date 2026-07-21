@@ -8,6 +8,10 @@ class ActionState:
     Stores information about the currently running action.
     """
 
+    action_type: str
+
+    target_id: str
+
     action_id: str
 
     action_name: str
@@ -27,7 +31,6 @@ class ActionState:
             self.completes_at -
             self.started_at
         ).total_seconds()
-
 
         elapsed = (
             now -
@@ -51,7 +54,6 @@ class ActionState:
             self.completes_at -
             datetime.now()
         ).total_seconds()
-
 
         return max(
             remaining,

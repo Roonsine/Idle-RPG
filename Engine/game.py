@@ -1,5 +1,6 @@
 from pathlib import Path
 
+from Engine.serializer import Serializer
 from Engine.save_manager import SaveManager
 from Engine.resource_loader import ResourceLoader
 from Engine.game_data import GameData
@@ -37,19 +38,19 @@ class Game:
         self.action_factory = ActionFactory()
         self.action_registry = ActionRegistry()
 
+
     def start(self):
-        """
-        Start the game.
-        """
-
-        if self.data is None:
-            self.load()
-
-
         if self.player is None:
-            self.create_player(
-                "Player"
-            )
+
+            if self.save_manager.exists():
+
+                data = self.save_manager.load()
+
+                self.player = Serializer.load_player(data)
+
+            else:
+
+                self.create_player("Player")
 
     def update(self):
 
@@ -102,6 +103,24 @@ class Game:
 
             self.player.skills[skill_id] = skill
 
+    def load_player(self):
+        """
+        Loads player data from save file.
+        """
+
+        save_data = self.save_manager.load()
+
+        if save_data is None:
+            return False
+
+        # temporary until we implement serializer loading
+
+        self.player = Player(
+            name=save_data.player_name
+        )
+
+        return True
+
     def save(self):
 
         self.save_manager.save(self)
@@ -111,7 +130,7 @@ class Game:
 
         return self.action_manager.state
     
-    def start_action(self, action_id):
+    def start_action(self, action_type, target_id):
         """
         Starts a player activity.
         """
@@ -129,14 +148,16 @@ class Game:
 
 
         action = self.action_registry.create(
-        "woodcutting",
-        action_id,
+        action_type,
+        target_id,
         self.data
     )
 
 
         self.action_manager.start(
-            action
+            action,
+            action_type,
+            target_id
         )
 
 

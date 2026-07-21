@@ -17,13 +17,17 @@ class ActionManager:
         self.state: ActionState | None = None
 
 
-    def start(self, action):
+    def start(self, action, action_type, target_id):
 
         self.current_action = action
 
         now = datetime.now()
 
         self.state = ActionState(
+
+            action_type= action_type,
+
+            target_id=target_id,
 
             action_id=action.id,
 
