@@ -4,7 +4,8 @@ from PySide6.QtWidgets import (
     QVBoxLayout,
     QHBoxLayout,
     QPushButton,
-    QLabel
+    QLabel,
+    QProgressBar
 )
 
 from PySide6.QtCore import QTimer
@@ -121,10 +122,45 @@ class MainWindow(QMainWindow):
         # Action display
         # -------------------------
 
-        self.action_label = QLabel()
+        self.action_title = QLabel("Current Action")
+
+        main_layout.addWidget(
+            self.action_title
+        )
+
+        self.action_label = QLabel("None")
 
         main_layout.addWidget(
             self.action_label
+        )
+
+        self.progress_bar = QProgressBar()
+        self.progress_bar.setTextVisible(True)
+        self.progress_bar.setFormat("%p%")
+
+        self.progress_bar.setRange(
+            0,
+            100
+        )
+
+        main_layout.addWidget(
+            self.progress_bar
+        )
+
+        self.remaining_label = QLabel(
+            "Time Remaining --"
+        )
+
+        main_layout.addWidget(
+            self.remaining_label
+        )
+
+        self.reward_label = QLabel(
+            "Last Reward: None"
+        )
+
+        main_layout.addWidget(
+            self.reward_label
         )
 
 
@@ -203,10 +239,10 @@ class MainWindow(QMainWindow):
         )
 
 
-        # update every second
+        # update 10 times per second
 
         self.timer.start(
-            1000
+            100
         )
 
 
@@ -217,8 +253,13 @@ class MainWindow(QMainWindow):
         """
 
 
-        self.game.update()
+        result = self.game.update()
 
+        if result is not None:
+            self.reward_label.setText(
+                f"+{result['amount']} {result['item']}\n"
+                f"+{result['xp']} XP"
+            )
 
         self.refresh()
 
@@ -245,28 +286,40 @@ class MainWindow(QMainWindow):
 
         state = self.game.action_state
 
-
         if state is None:
 
             self.action_label.setText(
-                "Action: None"
+                "None"
+            )
+
+            self.progress_bar.setValue(
+                0
+            )
+
+            self.remaining_label.setText(
+                "Time Remaining: --"
             )
 
             return
 
 
-
         self.action_label.setText(
-            f"""
-Action:
-{state.action_name}
+            state.action_name
+        )
 
-Progress:
-{state.progress() * 100:.1f}%
 
-Time Remaining:
-{state.remaining_time():.1f}s
-"""
+        progress = int(
+            state.progress() * 100
+        )
+
+        self.progress_bar.setValue(
+            progress
+        )
+
+
+        self.remaining_label.setText(
+            f"Time Remaining: "
+            f"{state.remaining_time():.1f}s"
         )
 
 

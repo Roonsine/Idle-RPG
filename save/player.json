@@ -4,14 +4,14 @@
     "gold": 0,
     "skills": {
         "woodcutting": {
-            "level": 1,
-            "xp": 75,
+            "level": 79,
+            "xp": 7850,
             "mastery_level": 1,
             "mastery_xp": 0
         },
         "mining": {
-            "level": 1,
-            "xp": 0,
+            "level": 3,
+            "xp": 260,
             "mastery_level": 1,
             "mastery_xp": 0
         },
@@ -23,10 +23,19 @@
         }
     },
     "inventory": {
-        "normal_log": 3
+        "normal_log": 314,
+        "copper_ore": 52
     },
     "equipment": {},
-    "current_action": null,
-    "last_saved": "2026-07-21T13:56:50.795555",
+    "current_action": {
+        "action_id": "mining_copper_rock",
+        "action_type": "mining",
+        "target_id": "copper_rock",
+        "action_name": "Mining Copper Rock",
+        "completed": 39,
+        "started_at": "2026-07-21T14:20:03.369901",
+        "completes_at": "2026-07-21T14:20:05.369901"
+    },
+    "last_saved": "2026-07-21T14:20:04.634505",
     "last_loaded": ""
 }
