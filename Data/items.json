@@ -2,62 +2,63 @@
     {
         "id": "normal_log",
         "name": "Normal Log",
-        "description": "A basic log obtained from trees.",
-        "value": 2,
-        "category": "Material",
-        "rarity": "Common",
+        "description": "Logs from a normal tree.",
+        "category": "log",
+        "rarity": "common",
         "stackable": true,
-        "icon": "normal_log.png"
+        "value": 1
     },
     {
         "id": "oak_log",
         "name": "Oak Log",
         "description": "A sturdy oak log.",
-        "value": 5,
         "category": "Material",
         "rarity": "Common",
         "stackable": true,
-        "icon": "oak_log.png"
+        "value": 5
     },
     {
         "id": "bird_nest",
         "name": "Bird Nest",
         "description": "Something a bird left behind.",
-        "value": 10,
         "category": "Material",
         "rarity": "Uncommon",
         "stackable": true,
-        "icon": "bird_nest.png"
+        "value": 10
     },
     {
         "id": "bones",
         "name": "Bones",
         "description": "Remains of a creature.",
-        "value": 1,
         "category": "Material",
         "rarity": "Common",
         "stackable": true,
-        "icon": "bones.png"
+        "value": 1
     },
     {
         "id": "cow_hide",
         "name": "Cow Hide",
         "description": "A piece of leather material.",
-        "value": 15,
         "category": "Material",
         "rarity": "Common",
         "stackable": true,
-        "icon": "cow_hide.png"
+        "value": 15
     },
     {
         "id": "copper_ore",
         "name": "Copper Ore",
+        "description": "A chunk of copper ore used in smelting.",
+        "category": "Material",
+        "rarity":"Common",
         "stackable": true,
         "value": 2
     },
     {
         "id": "tin_ore",
         "name": "Tin Ore",
+        "description": "A chunk of tin ore used in smelting.",
+        "category": "Material",
+        "rarity":"Common",
         "stackable": true,
         "value": 2
     }

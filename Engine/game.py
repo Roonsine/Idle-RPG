@@ -1,5 +1,6 @@
 from pathlib import Path
 
+from Engine.save_manager import SaveManager
 from Engine.resource_loader import ResourceLoader
 from Engine.game_data import GameData
 from Engine.action_manager import ActionManager
@@ -30,9 +31,25 @@ class Game:
 
         self.player: Player | None = None
 
+        self.save_manager = SaveManager("save")
+
         self.action_manager = ActionManager()
         self.action_factory = ActionFactory()
         self.action_registry = ActionRegistry()
+
+    def start(self):
+        """
+        Start the game.
+        """
+
+        if self.data is None:
+            self.load()
+
+
+        if self.player is None:
+            self.create_player(
+                "Player"
+            )
 
     def update(self):
 
@@ -55,7 +72,6 @@ class Game:
 
         self.data = self.loader.load_all()
         self.setup_actions()
-
 
     def create_player(self, name: str):
         """
@@ -86,20 +102,9 @@ class Game:
 
             self.player.skills[skill_id] = skill
 
+    def save(self):
 
-    def start(self):
-        """
-        Start the game.
-        """
-
-        if self.data is None:
-            self.load()
-
-
-        if self.player is None:
-            self.create_player(
-                "Player"
-            )
+        self.save_manager.save(self)
 
     @property
     def action_state(self):
