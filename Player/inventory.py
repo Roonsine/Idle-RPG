@@ -20,10 +20,10 @@ class Inventory:
         self.items = defaultdict(int)
 
 
-    def add_item(self, item_id: str, amount: int = 1):
-        """
-        Add items to inventory.
-        """
+    def add_item(self, item_id, amount):
+
+        if item_id not in self.items:
+            self.items[item_id] = 0
 
         self.items[item_id] += amount
 

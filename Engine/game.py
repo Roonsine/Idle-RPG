@@ -40,17 +40,34 @@ class Game:
 
 
     def start(self):
-        if self.player is None:
+        """
+        Starts the game.
 
-            if self.save_manager.exists():
+        Loads content first,
+        then loads or creates player.
+        """
 
-                data = self.save_manager.load()
+        if self.data is None:
+            self.load()
 
-                self.player = Serializer.load_player(data)
 
-            else:
+        if self.player is not None:
+            return
 
-                self.create_player("Player")
+
+        if self.save_manager.exists():
+
+            data = self.save_manager.load()
+
+            self.player = Serializer.load_player(
+                data
+            )
+
+        else:
+
+            self.create_player(
+                "Player"
+            )
 
     def update(self):
 
@@ -102,24 +119,6 @@ class Game:
             )
 
             self.player.skills[skill_id] = skill
-
-    def load_player(self):
-        """
-        Loads player data from save file.
-        """
-
-        save_data = self.save_manager.load()
-
-        if save_data is None:
-            return False
-
-        # temporary until we implement serializer loading
-
-        self.player = Player(
-            name=save_data.player_name
-        )
-
-        return True
 
     def save(self):
 
