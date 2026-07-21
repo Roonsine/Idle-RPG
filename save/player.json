@@ -4,8 +4,8 @@
     "gold": 250,
     "skills": {
         "woodcutting": {
-            "level": 1,
-            "xp": 500,
+            "level": 38,
+            "xp": 3700,
             "mastery_level": 1,
             "mastery_xp": 0
         },
@@ -23,7 +23,7 @@
         }
     },
     "inventory": {
-        "normal_log": 50
+        "normal_log": 178
     },
     "equipment": {},
     "current_action": {
@@ -32,9 +32,9 @@
         "target_id": "normal_tree",
         "action_name": "Chopping Normal Tree",
         "completed": 0,
-        "started_at": "2026-07-20T22:43:11.128583",
-        "completes_at": "2026-07-20T22:43:14.128583"
+        "started_at": "2026-07-20T22:56:21.792564",
+        "completes_at": "2026-07-20T22:56:24.792564"
     },
-    "last_saved": "2026-07-20T22:43:11.128762",
+    "last_saved": "2026-07-20T22:56:21.792648",
     "last_loaded": ""
 }

@@ -32,3 +32,29 @@ class Action:
         raise NotImplementedError(
             "Action must implement execute()"
         )
+    
+
+    def execute_many(
+        self,
+        player,
+        game_data,
+        amount
+    ):
+        """
+        Executes an action multiple times.
+
+        Used for offline progression.
+        """
+
+        results = []
+
+        for _ in range(amount):
+
+            result = self.execute(
+                player,
+                game_data
+            )
+
+            results.append(result)
+
+        return results

@@ -1,4 +1,5 @@
 from pathlib import Path
+import time
 
 from Engine.game import Game
 
@@ -10,21 +11,43 @@ game = Game(
 game.start()
 
 
-print("Starting action...")
-
 game.start_action(
     "woodcutting",
     "normal_tree"
 )
 
 
-print(game.action_state)
+print(
+    "Before save:",
+    game.player.inventory.items
+)
 
-
-print("\nSaving...")
 
 game.save()
 
 
-print("\nSaved action:")
-print(game.action_state)
+print(
+    "Saved. Waiting..."
+)
+
+
+time.sleep(10)
+
+
+game2 = Game(
+    Path("Data")
+)
+
+
+game2.start()
+
+
+print(
+    "After offline:",
+    game2.player.inventory.items
+)
+
+
+print(
+    game2.player.skills["woodcutting"]
+)

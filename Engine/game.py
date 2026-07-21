@@ -1,5 +1,6 @@
 from pathlib import Path
 
+from Engine.offline_progress import OfflineProgress
 from Engine.serializer import Serializer
 from Engine.save_manager import SaveManager
 from Engine.resource_loader import ResourceLoader
@@ -34,6 +35,8 @@ class Game:
 
         self.save_manager = SaveManager("save")
 
+        self.offline_progress = OfflineProgress()
+
         self.action_manager = ActionManager()
         self.action_factory = ActionFactory()
         self.action_registry = ActionRegistry()
@@ -54,20 +57,21 @@ class Game:
         if self.player is not None:
             return
 
-
         if self.save_manager.exists():
 
-            data = self.save_manager.load()
+            save_data = self.save_manager.load()
 
             self.player = Serializer.load_player(
-                data
+                save_data
             )
 
+            self.calculate_offline_progress(
+                save_data
+            )
+            
         else:
 
-            self.create_player(
-                "Player"
-            )
+            self.create_player("Player")
 
     def update(self):
 
@@ -123,6 +127,85 @@ class Game:
     def save(self):
 
         self.save_manager.save(self)
+
+    def calculate_offline_progress(self, save_data):
+        """
+        Applies offline progress.
+        """
+
+        if self.player is None:
+            return
+
+
+        action_data = save_data.get(
+            "current_action"
+        )
+
+
+        if action_data is None:
+            return
+
+
+        seconds = self.offline_progress.calculate_seconds_away(
+            save_data.get("last_saved")
+        )
+
+
+        action = self.restore_action(
+            action_data
+        )
+
+
+        if action is None:
+            return
+
+
+        completed = self.offline_progress.calculate_completions(
+            seconds,
+            action
+        )
+
+
+        if completed <= 0:
+            return
+
+
+        print(
+            f"Offline completed actions: {completed}"
+        )
+
+
+        action.execute_many(
+            self.player,
+            self.data,
+            completed
+        )
+
+    def restore_action(self, action_data):
+        """
+        Restores the action the player was doing
+        when the game closed.
+        """
+
+        if action_data is None:
+            return
+
+
+        action = self.action_registry.create(
+            action_data["action_type"],
+            action_data["target_id"],
+            self.data
+        )
+
+
+        self.action_manager.start(
+            action,
+            action_data["action_type"],
+            action_data["target_id"]
+        )
+
+
+        return action
 
     @property
     def action_state(self):
