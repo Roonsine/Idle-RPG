@@ -234,7 +234,10 @@ class Game:
         target_id,
         self.data
     )
-
+        print(
+        "CREATED ACTION:",
+        type(action)
+        )
 
         self.action_manager.start(
             action,

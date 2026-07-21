@@ -5,6 +5,7 @@
         "level_required": 1,
         "xp": 25,
         "interval": 3,
+        "amount": 1,
         "log_item_id": "normal_log"
     }
 ]

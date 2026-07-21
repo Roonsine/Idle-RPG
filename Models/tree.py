@@ -14,4 +14,6 @@ class Tree:
 
     interval: float
 
+    amount: int
+
     log_item_id: str

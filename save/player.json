@@ -1,11 +1,11 @@
 {
     "version": 1,
     "player_name": "Player",
-    "gold": 250,
+    "gold": 0,
     "skills": {
         "woodcutting": {
-            "level": 38,
-            "xp": 3700,
+            "level": 1,
+            "xp": 75,
             "mastery_level": 1,
             "mastery_xp": 0
         },
@@ -23,18 +23,10 @@
         }
     },
     "inventory": {
-        "normal_log": 178
+        "normal_log": 3
     },
     "equipment": {},
-    "current_action": {
-        "action_id": "woodcutting_normal_tree",
-        "action_type": "woodcutting",
-        "target_id": "normal_tree",
-        "action_name": "Chopping Normal Tree",
-        "completed": 0,
-        "started_at": "2026-07-20T22:56:21.792564",
-        "completes_at": "2026-07-20T22:56:24.792564"
-    },
-    "last_saved": "2026-07-20T22:56:21.792648",
+    "current_action": null,
+    "last_saved": "2026-07-21T13:56:50.795555",
     "last_loaded": ""
 }

@@ -17,4 +17,6 @@ class Rock:
 
     interval: float
 
+    amount: int
+
     ore_item_id: str

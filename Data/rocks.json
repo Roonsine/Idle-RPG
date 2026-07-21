@@ -5,6 +5,7 @@
         "level_required": 1,
         "xp": 5,
         "interval": 2,
+        "amount": 1,
         "ore_item_id": "copper_ore"
     },
     {
@@ -13,6 +14,7 @@
         "level_required": 1,
         "xp": 5,
         "interval": 2,
+        "amount": 1,
         "ore_item_id": "tin_ore"
     }
 ]

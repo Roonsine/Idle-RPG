@@ -1,29 +1,32 @@
 class ActionRegistry:
-    """
-    Registers all available action creators.
-    """
+
 
     def __init__(self):
-        self._creators = {}
 
-    def register(self, action_type: str, creator):
-        if action_type in self._creators:
-            raise ValueError(
-                f"Action '{action_type}' is already registered."
-            )
+        self.actions = {}
 
-        self._creators[action_type] = creator
 
-    def create(self, action_type: str, *args, **kwargs):
-        if action_type not in self._creators:
-            raise KeyError(
-                f"No creator registered for '{action_type}'."
-            )
 
-        return self._creators[action_type](
-            *args,
-            **kwargs
+    def register(
+        self,
+        action_type,
+        factory
+    ):
+
+        self.actions[action_type] = factory
+
+
+
+    def create(
+        self,
+        action_type,
+        target_id,
+        game_data
+    ):
+
+        factory = self.actions[action_type]
+
+        return factory(
+            target_id,
+            game_data
         )
-
-    def registered_actions(self):
-        return tuple(self._creators.keys())

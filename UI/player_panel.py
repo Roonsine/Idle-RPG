@@ -1,14 +1,17 @@
 from PySide6.QtWidgets import QWidget, QVBoxLayout, QLabel
 
 
-class SkillPanel(QWidget):
+class PlayerPanel(QWidget):
+    """
+    Displays player information.
+    """
+
 
     def __init__(self, game):
 
         super().__init__()
 
         self.game = game
-
 
         self.layout = QVBoxLayout()
 
@@ -37,18 +40,12 @@ class SkillPanel(QWidget):
             return
 
 
-        text = "Skills:\n\n"
-
-
-        for skill_id, skill in player.skills.items():
-
-            text += (
-                f"{skill_id}\n"
-                f"Level: {skill.level}\n"
-                f"XP: {skill.xp}\n\n"
-            )
-
-
         self.label.setText(
-            text
+            f"""
+Player:
+{player.name}
+
+Gold:
+{player.gold}
+"""
         )

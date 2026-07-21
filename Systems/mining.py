@@ -1,5 +1,6 @@
 from Systems.action import Action
 
+
 class MiningAction(Action):
 
     def __init__(self, rock):
@@ -12,3 +13,23 @@ class MiningAction(Action):
             category="mining",
             interval=rock.interval
         )
+
+    def execute(self, player, game_data):
+        """
+        Executes one mining cycle.
+        """
+
+        player.inventory.add_item(
+            self.rock.ore_item_id,
+            self.rock.amount
+        )
+
+        player.skills["mining"].add_xp(
+            self.rock.xp
+        )
+
+        return {
+            "xp": self.rock.xp,
+            "item": self.rock.ore_item_id,
+            "amount": self.rock.amount
+        }
