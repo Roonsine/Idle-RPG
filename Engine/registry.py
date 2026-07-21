@@ -38,6 +38,13 @@ class Registry:
 
         return self._objects.values()
 
+    def values(self):
+        return self._objects.values()
+
+
+    def items(self):
+        return self._objects.items()
+
     def __contains__(self, object_id):
         return object_id in self._objects
 

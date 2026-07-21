@@ -7,5 +7,14 @@
         "interval": 3,
         "amount": 1,
         "log_item_id": "normal_log"
+    },
+    {
+        "id": "oak_tree",
+        "name": "Oak Tree",
+        "level_required": 15,
+        "xp": 50,
+        "interval": 3,
+        "amount": 1,
+        "log_item_id": "oak_log"
     }
 ]

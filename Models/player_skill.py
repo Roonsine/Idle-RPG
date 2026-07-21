@@ -1,55 +1,59 @@
 from dataclasses import dataclass
+import config
+
+
 
 
 @dataclass
 class PlayerSkill:
-    """
-    Represents a player's progress in one skill.
-    """
 
     skill_id: str
 
-    level: int = 1
+    level: int
 
-    xp: float = 0
+    xp: float
 
     mastery_level: int = 1
 
     mastery_xp: float = 0
 
 
-    def add_xp(self, amount: float):
-        """
-        Add experience and check for level ups.
-        """
+
+    def add_xp(self, amount):
+
+        if self.level >= config.MAX_LEVEL:
+
+            self.level = config.MAX_LEVEL
+
+            self.xp = 0
+
+            return
+
 
         self.xp += amount
 
-        self.check_level_up()
+
+        while self.level < config.MAX_LEVEL:
+
+            required = self.xp_required(
+                self.level
+            )
 
 
-    def check_level_up(self):
-        """
-        Checks whether the player should gain levels.
+            if self.xp < required:
 
-        Temporary formula.
-        Will be replaced by the Melvor/OSRS XP curve.
-        """
+                break
 
-        while self.xp >= self.xp_for_next_level():
+
+            self.xp -= required
 
             self.level += 1
 
 
-    def xp_for_next_level(self):
-        """
-        Temporary XP requirement.
 
-        Level 1 -> 2 = 100 XP
-        Level 2 -> 3 = 200 XP
-        etc.
+    def xp_required(
+        self,
+        level
+    ):
 
-        This will later be replaced.
-        """
-
-        return self.level * 100
+        return level * level * 100

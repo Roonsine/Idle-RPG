@@ -11,7 +11,7 @@
     {
         "id": "tin_rock",
         "name": "Tin Rock",
-        "level_required": 1,
+        "level_required": 15,
         "xp": 5,
         "interval": 2,
         "amount": 1,

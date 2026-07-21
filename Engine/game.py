@@ -33,6 +33,9 @@ class Game:
 
         self.player: Player | None = None
 
+        # Tracks skill levels for UI updates
+        self.last_skill_levels = {}
+
         self.save_manager = SaveManager("save")
 
         self.offline_progress = OfflineProgress()
@@ -56,19 +59,13 @@ class Game:
 
         if self.player is not None:
             return
-
         if self.save_manager.exists():
 
-            save_data = self.save_manager.load()
+            data = self.save_manager.load()
 
-            self.player = Serializer.load_player(
-                save_data
-            )
+            self.player = Serializer.load_player(data)
 
-            self.calculate_offline_progress(
-                save_data
-            )
-            
+            self.initialize_skill_tracking()
         else:
 
             self.create_player("Player")
@@ -123,7 +120,32 @@ class Game:
             )
 
             self.player.skills[skill_id] = skill
+            
+        self.initialize_skill_tracking()
 
+    def skill_level_changed(self):
+
+        if self.player is None:
+            return False
+
+
+        for skill_id, skill in self.player.skills.items():
+
+            old = self.last_skill_levels.get(
+                skill_id,
+                skill.level
+            )
+
+
+            if skill.level != old:
+
+                self.last_skill_levels[skill_id] = skill.level
+
+                return True
+
+
+        return False
+            
     def save(self):
 
         self.save_manager.save(self)
@@ -266,3 +288,14 @@ class Game:
         """
 
         self.action_manager.stop()
+
+    def initialize_skill_tracking(self):
+
+        if self.player is None:
+            return
+
+
+        self.last_skill_levels = {
+            skill_id: skill.level
+            for skill_id, skill in self.player.skills.items()
+        }

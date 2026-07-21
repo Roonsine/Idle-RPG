@@ -1,3 +1,5 @@
+import sys
+
 from pathlib import Path
 
 from PySide6.QtWidgets import QApplication
@@ -7,30 +9,25 @@ from UI.main_window import MainWindow
 
 
 
-def main():
-
-    app = QApplication([])
+app = QApplication(sys.argv)
 
 
-    game = Game(
-        Path("Data")
-    )
+game = Game(
+    Path("Data")
+)
 
 
-    game.start()
+game.start()
 
 
-    window = MainWindow(
-        game
-    )
+window = MainWindow(
+    game
+)
 
 
-    window.show()
+window.show()
 
 
+sys.exit(
     app.exec()
-
-
-
-if __name__ == "__main__":
-    main()
+)
