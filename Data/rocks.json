@@ -1,0 +1,18 @@
+[
+    {
+        "id": "copper_rock",
+        "name": "Copper Rock",
+        "level_required": 1,
+        "xp": 5,
+        "interval": 2,
+        "ore_item_id": "copper_ore"
+    },
+    {
+        "id": "tin_rock",
+        "name": "Tin Rock",
+        "level_required": 1,
+        "xp": 5,
+        "interval": 2,
+        "ore_item_id": "tin_ore"
+    }
+]

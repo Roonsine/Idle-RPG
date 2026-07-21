@@ -1,5 +1,6 @@
 from .item import Item
 from .tree import Tree
+from .rocks import Rock
 from .skill import SkillDefinition
 from .player_skill import PlayerSkill
 from .drop import Drop

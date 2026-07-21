@@ -15,6 +15,7 @@ class WoodcuttingAction(Action):
         super().__init__(
             id=f"woodcutting_{tree.id}",
             name=f"Chopping {tree.name}",
+            category="woodcutting",
             interval=tree.interval
         )
 

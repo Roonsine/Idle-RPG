@@ -4,6 +4,7 @@ from Engine.resource_loader import ResourceLoader
 from Engine.game_data import GameData
 from Engine.action_manager import ActionManager
 from Engine.action_factory import ActionFactory
+from Engine.action_registry import ActionRegistry
 
 from Player import Player
 from Models.player_skill import PlayerSkill
@@ -31,6 +32,7 @@ class Game:
 
         self.action_manager = ActionManager()
         self.action_factory = ActionFactory()
+        self.action_registry = ActionRegistry()
 
     def update(self):
 
@@ -52,6 +54,7 @@ class Game:
         """
 
         self.data = self.loader.load_all()
+        self.setup_actions()
 
 
     def create_player(self, name: str):
@@ -120,10 +123,11 @@ class Game:
             )
 
 
-        action = self.action_factory.create_tree_action(
-            action_id,
-            self.data
-        )
+        action = self.action_registry.create(
+        "woodcutting",
+        action_id,
+        self.data
+    )
 
 
         self.action_manager.start(
@@ -132,3 +136,22 @@ class Game:
 
 
         return action
+    
+    def setup_actions(self):
+
+        self.action_registry.register(
+            "woodcutting",
+            self.action_factory.create_tree_action
+        )
+
+        self.action_registry.register(
+        "mining",
+        self.action_factory.create_rock_action
+    )
+
+    def stop_action(self):
+        """
+        Stops the currently running action.
+        """
+
+        self.action_manager.stop()

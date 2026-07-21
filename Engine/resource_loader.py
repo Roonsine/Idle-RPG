@@ -12,7 +12,8 @@ from Models import (
     Monster,
     Drop,
     Recipe,
-    Equipment
+    Equipment,
+    Rock    
 )
 
 from Engine.registry import Registry
@@ -78,6 +79,18 @@ class ResourceLoader:
             tree = Tree(**entry)
 
             registry.register(tree)
+
+        return registry
+    
+    def load_rocks(self):
+
+        registry = Registry()
+
+        for entry in self.load_json("rocks.json"):
+
+            rock = Rock(**entry)
+
+            registry.register(rock)
 
         return registry
 
@@ -149,5 +162,7 @@ class ResourceLoader:
 
             recipes=self.load_recipes(),
 
-            equipment=self.load_equipment()
+            equipment=self.load_equipment(),
+
+            rocks= self.load_rocks()
         )

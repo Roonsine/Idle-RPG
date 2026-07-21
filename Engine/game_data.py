@@ -23,3 +23,5 @@ class GameData:
     recipes: Registry
 
     equipment: Registry
+
+    rocks: Registry

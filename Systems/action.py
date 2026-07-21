@@ -1,21 +1,13 @@
 from dataclasses import dataclass
 
-
 @dataclass
 class Action:
-    """
-    Base class for all timed player actions.
-
-    Examples:
-    - Woodcutting
-    - Mining
-    - Cooking
-    - Combat
-    """
 
     id: str
 
     name: str
+
+    category: str
 
     interval: float
 

@@ -48,5 +48,17 @@
         "rarity": "Common",
         "stackable": true,
         "icon": "cow_hide.png"
+    },
+    {
+        "id": "copper_ore",
+        "name": "Copper Ore",
+        "stackable": true,
+        "value": 2
+    },
+    {
+        "id": "tin_ore",
+        "name": "Tin Ore",
+        "stackable": true,
+        "value": 2
     }
 ]
