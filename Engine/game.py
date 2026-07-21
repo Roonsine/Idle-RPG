@@ -3,6 +3,7 @@ from pathlib import Path
 from Engine.resource_loader import ResourceLoader
 from Engine.game_data import GameData
 from Engine.action_manager import ActionManager
+from Engine.action_factory import ActionFactory
 
 from Player import Player
 from Models.player_skill import PlayerSkill
@@ -29,6 +30,7 @@ class Game:
         self.player: Player | None = None
 
         self.action_manager = ActionManager()
+        self.action_factory = ActionFactory()
 
     def update(self):
 
@@ -95,3 +97,38 @@ class Game:
             self.create_player(
                 "Player"
             )
+
+    @property
+    def action_state(self):
+
+        return self.action_manager.state
+    
+    def start_action(self, action_id):
+        """
+        Starts a player activity.
+        """
+
+        if self.data is None:
+            raise RuntimeError(
+                "Game data not loaded."
+            )
+
+
+        if self.player is None:
+            raise RuntimeError(
+                "Player does not exist."
+            )
+
+
+        action = self.action_factory.create_tree_action(
+            action_id,
+            self.data
+        )
+
+
+        self.action_manager.start(
+            action
+        )
+
+
+        return action

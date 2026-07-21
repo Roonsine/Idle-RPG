@@ -3,42 +3,37 @@ from Systems.action import Action
 
 class WoodcuttingAction(Action):
     """
-    Handles chopping trees.
+    Represents chopping a specific tree.
     """
 
 
-    def __init__(self, tree_id):
+    def __init__(self, tree):
 
-        self.tree_id = tree_id
+        self.tree = tree
+
 
         super().__init__(
-            id=f"woodcutting_{tree_id}",
-            name="Woodcutting",
-            interval=3
+            id=f"woodcutting_{tree.id}",
+            name=f"Chopping {tree.name}",
+            interval=tree.interval
         )
 
 
     def can_execute(self, player, game_data):
 
-        tree = game_data.trees.get(
-            self.tree_id
+        woodcutting = (
+            player.skills["woodcutting"]
         )
 
-        player_level = (
-            player.skills["woodcutting"].level
-        )
 
         return (
-            player_level >= tree.level_required
+            woodcutting.level
+            >=
+            self.tree.level_required
         )
 
 
     def execute(self, player, game_data):
-
-        tree = game_data.trees.get(
-            self.tree_id
-        )
-
 
         if not self.can_execute(
             player,
@@ -49,25 +44,25 @@ class WoodcuttingAction(Action):
             )
 
 
-        # Give XP
-
         player.skills[
             "woodcutting"
         ].add_xp(
-            tree.xp
+            self.tree.xp
         )
 
 
-        # Give logs
-
         player.inventory.add_item(
-            tree.log_item_id,
+            self.tree.log_item_id,
             1
         )
 
 
         return {
-            "xp": tree.xp,
-            "item": tree.log_item_id,
+
+            "xp": self.tree.xp,
+
+            "item":
+                self.tree.log_item_id,
+
             "amount": 1
         }

@@ -1,16 +1,8 @@
 from dataclasses import dataclass
 
 
-@dataclass(slots=True, frozen=True)
+@dataclass
 class Tree:
-    """
-    Static definition of a woodcutting resource.
-
-    Loaded from trees.json.
-
-    This describes the tree itself,
-    not the player's interaction with it.
-    """
 
     id: str
 
@@ -23,7 +15,3 @@ class Tree:
     interval: float
 
     log_item_id: str
-
-    depletion_chance: float = 0.0
-
-    respawn_time: float = 0.0

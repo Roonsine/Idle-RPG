@@ -1,4 +1,7 @@
-import time
+from datetime import datetime, timedelta
+
+from Engine.action_state import ActionState
+from Systems.action import Action
 
 
 class ActionManager:
@@ -6,29 +9,42 @@ class ActionManager:
     Handles repeating idle actions.
     """
 
+
     def __init__(self):
 
-        self.current_action = None
+        self.current_action: Action | None = None
 
-        self.start_time = None
-
-        self.completed_actions = 0
+        self.state: ActionState | None = None
 
 
     def start(self, action):
 
         self.current_action = action
 
-        self.start_time = time.time()
+        now = datetime.now()
 
-        self.completed_actions = 0
+        self.state = ActionState(
+
+            action_id=action.id,
+
+            action_name=action.name,
+
+            started_at=now,
+
+            completes_at=(
+                now +
+                timedelta(
+                    seconds=action.interval
+                )
+            )
+        )
 
 
     def stop(self):
 
         self.current_action = None
 
-        self.start_time = None
+        self.state = None
 
 
     def is_active(self):
@@ -38,36 +54,27 @@ class ActionManager:
 
     def progress(self):
 
-        if not self.is_active():
+        if self.state is None:
             return 0
 
-        elapsed = time.time() - self.start_time
-
-        return min(
-            elapsed / self.current_action.interval,
-            1
-        )
+        return self.state.progress()
 
 
     def finished(self):
 
-        return (
-            self.is_active()
-            and self.progress() >= 1
-        )
+        if self.state is None:
+            return False
+
+        return self.state.progress() >= 1
 
 
     def tick(self, player, game_data):
-        """
-        Checks whether the action completed.
 
-        If yes:
-        - reward player
-        - restart timer
-        """
+        if self.current_action is None:
+            return None
+
 
         if not self.finished():
-
             return None
 
 
@@ -77,12 +84,23 @@ class ActionManager:
         )
 
 
-        self.completed_actions += 1
+        if self.state is not None:
+            self.state.complete()
 
 
         # restart timer
 
-        self.start_time = time.time()
+        now = datetime.now()
 
+        if self.state is not None:
+
+            self.state.started_at = now
+
+            self.state.completes_at = (
+                now +
+                timedelta(
+                    seconds=self.current_action.interval
+                )
+            )
 
         return result
