@@ -15,15 +15,15 @@ class ActionPanel(QWidget):
 
     stop_requested = Signal()
 
-    def __init__(self):
+    def __init__(self, game):
 
         super().__init__()
 
+        self.game = game
         self.main_layout = QVBoxLayout(self)
 
-        title = QLabel("Current Action")
-
-        self.main_layout.addWidget(title)
+        self.title = QLabel("Current Action")
+        self.main_layout.addWidget(self.title)
 
         self.action_name = QLabel("None")
 
@@ -61,25 +61,32 @@ class ActionPanel(QWidget):
 
         self.main_layout.addWidget(self.reward_label)
 
-    def update_action(self, state):
+    def refresh(self):
+
+        state = self.game.action_state
 
         if state is None:
 
             self.action_name.setText("None")
+
             self.progress.setValue(0)
+
             self.remaining.setText(
                 "Time Remaining: --"
             )
 
             return
 
+
         self.action_name.setText(
             state.action_name
         )
 
+
         self.progress.setValue(
             int(state.progress() * 100)
         )
+
 
         self.remaining.setText(
             f"Time Remaining: "

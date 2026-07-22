@@ -40,7 +40,7 @@ class InventoryPanel(QWidget):
         text = "Inventory:\n\n"
 
 
-        for item, amount in player.inventory.items.items():
+        for item, amount in player.inventory.all_items().items():
 
             text += (
                 f"{item}: {amount}\n"

@@ -11,7 +11,7 @@
         },
         "mining": {
             "level": 6,
-            "xp": 2050,
+            "xp": 2070,
             "mastery_level": 1,
             "mastery_xp": 0
         },
@@ -23,21 +23,13 @@
         }
     },
     "inventory": {
-        "normal_log": 87,
-        "copper_ore": 1465,
-        "tin_ore": 25,
-        "oak_log": 409
+        "normal_log": 126,
+        "copper_ore": 1467,
+        "tin_ore": 27,
+        "oak_log": 414
     },
     "equipment": {},
-    "current_action": {
-        "action_id": "mining_copper_rock",
-        "action_type": "mining",
-        "target_id": "copper_rock",
-        "action_name": "Mining Copper Rock",
-        "completed": 2,
-        "started_at": "2026-07-22T02:20:23.116903",
-        "completes_at": "2026-07-22T02:20:25.116903"
-    },
-    "last_saved": "2026-07-22T02:20:24.658254",
+    "current_action": null,
+    "last_saved": "2026-07-22T03:53:38.939182",
     "last_loaded": ""
 }

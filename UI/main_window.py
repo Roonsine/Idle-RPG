@@ -37,8 +37,6 @@ class MainWindow(QMainWindow):
 
         self.game = game
 
-        self.selected_skill = "woodcutting"
-
         self.setWindowTitle(
             "Idle RPG"
         )
@@ -50,20 +48,12 @@ class MainWindow(QMainWindow):
         )
 
 
+
         self.setup_ui()
 
         self.connect_signals()
 
         self.start_timer()
-
-        print("Creating sidebar")
-
-        self.sidebar = Sidebar(
-            self.game
-        )
-
-
-
 
     def setup_ui(self):
 
@@ -93,11 +83,6 @@ class MainWindow(QMainWindow):
             self.sidebar
         )
 
-
-        self.sidebar.skill_selector.skill_selected.connect(
-            self.change_skill
-        )
-
         # -----------------------
         # Main content
         # -----------------------
@@ -122,7 +107,7 @@ class MainWindow(QMainWindow):
 
         # Current action
 
-        self.action_panel = ActionPanel()
+        self.action_panel = ActionPanel(self.game)
 
         content_layout.addWidget(
             self.action_panel
@@ -145,10 +130,6 @@ class MainWindow(QMainWindow):
 
         self.inventory_panel = InventoryPanel(
             self.game
-        )
-
-        self.sidebar.skill_selector.skill_selected.connect(
-            self.change_skill
         )
 
         self.pages = PageStack()
@@ -185,29 +166,50 @@ class MainWindow(QMainWindow):
             2
         )
 
+        self.refreshables = [
+            self.player_panel,
+            self.skill_panel,
+            self.inventory_panel,
+            self.action_panel
+        ]
+        
+        for panel in self.refreshables:
+            panel.refresh()
 
     def connect_signals(self):
 
-        """
-        Connects UI events to game actions.
-        """
         self.sidebar.paged_changed.connect(
             self.pages.show_page
         )
 
         self.sidebar.skill_selector.skill_selected.connect(
-                self.change_skill
-            )
-        
+            self.activity_panel.set_skill
+        )
+
         self.activity_panel.action_selected.connect(
-            self.start_action
+            self.game.start_action
         )
-        
+
         self.action_panel.stop_requested.connect(
-            self.stop_action
+            self.game.stop_action
         )
 
 
+        self.game.action_changed.connect(
+            self.action_panel.refresh
+        )
+
+        self.game.action_completed.connect(
+            self.action_panel.show_reward
+        )
+
+        self.game.skills_changed.connect(
+            self.skill_panel.refresh
+        )
+
+        self.game.inventory_changed.connect(
+            self.inventory_panel.refresh
+        )
 
     def start_timer(self):
 
@@ -225,55 +227,14 @@ class MainWindow(QMainWindow):
 
     def update_game(self):
 
-        result = self.game.update()
+        self.game.update()
 
-
-        if result is not None:
-
-            self.action_panel.show_reward(
-                result
-            )
-
-
-        self.refresh()
+        self.action_panel.refresh()
 
     def refresh(self):
 
-        self.player_panel.refresh()
-
-        self.skill_panel.refresh()
-
-        self.inventory_panel.refresh()
-
-        self.action_panel.update_action(
-            self.game.action_state
-        )
-
-    def change_skill(self, skill_id):
-
-        self.selected_skill = skill_id
-
-        self.activity_panel.set_skill(
-            skill_id
-        )
-
-    def start_action(self, action_type, target_id):
-
-        self.game.start_action(
-            action_type,
-            target_id
-        )
-
-        self.refresh()
-
-    def stop_action(self):
-        """
-        Stops the current player action.
-        """
-
-        self.game.stop_action()
-
-        self.refresh()
+        for panel in self.refreshables:
+            panel.refresh()
 
     def closeEvent(self, event):
 

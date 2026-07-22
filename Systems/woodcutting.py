@@ -44,26 +44,12 @@ class WoodcuttingAction(Action):
                 "Woodcutting level too low."
             )
 
-
-        player.skills[
-            "woodcutting"
-        ].add_xp(
-            self.tree.xp
-        )
-
-
-        player.inventory.add_item(
-            self.tree.log_item_id,
-            1
-        )
-
-
         return {
+            "skill": "woodcutting",
 
             "xp": self.tree.xp,
 
-            "item":
-                self.tree.log_item_id,
+            "item": self.tree.log_item_id,
 
             "amount": 1
         }
