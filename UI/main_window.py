@@ -199,6 +199,10 @@ class MainWindow(QMainWindow):
                 self.change_skill
             )
         
+        self.activity_panel.action_selected.connect(
+            self.start_action
+        )
+        
         self.action_panel.stop_requested.connect(
             self.stop_action
         )
@@ -252,6 +256,15 @@ class MainWindow(QMainWindow):
         self.activity_panel.set_skill(
             skill_id
         )
+
+    def start_action(self, action_type, target_id):
+
+        self.game.start_action(
+            action_type,
+            target_id
+        )
+
+        self.refresh()
 
     def stop_action(self):
         """
