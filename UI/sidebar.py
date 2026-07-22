@@ -1,45 +1,74 @@
+from UI.skill_selector import SkillSelector
+
+from PySide6.QtWidgets import QWidget, QVBoxLayout, QPushButton, QLabel, QFrame
 from PySide6.QtCore import Signal
-from PySide6.QtWidgets import (
-    QWidget,
-    QPushButton,
-    QVBoxLayout
-)
+
 
 
 class Sidebar(QWidget):
 
-    page_changed = Signal(str)
+    paged_changed = Signal(str)
 
-    def __init__(self):
+    def __init__(self, game):
 
         super().__init__()
 
-        layout = QVBoxLayout(self)
+        self.game = game
 
-        buttons = [
+        self.main_layout = QVBoxLayout()
 
-            ("👤 Player","player"),
+        self.setLayout(
+            self.main_layout
+        )
 
-            ("⚒ Skills","skills"),
+        player_button = QPushButton(
+            "Player"
+        )
 
-            ("🎒 Inventory","inventory"),
+        player_button.clicked.connect(  
+            lambda: self.paged_changed.emit("player")
+        )
 
-            ("⚔ Equipment","equipment"),
+        skills_button = QPushButton(
+            "Skills"
+        )
 
-            ("⚙ Settings","settings")
+        skills_button.clicked.connect(
+            lambda: self.paged_changed.emit("skills")
+        )
 
-            ]
+        inventory_button = QPushButton(
+            "Inventory"
+        )
 
-        for text, page in buttons:
+        inventory_button.clicked.connect(
+            lambda: self.paged_changed.emit("inventory")
+        )
 
-            button = QPushButton(text)
+        self.main_layout.addWidget(
+            player_button
+        )
+        self.main_layout.addWidget(
+            skills_button
+        )
+        self.main_layout.addWidget(
+            inventory_button
+        )
 
-            button.clicked.connect(
 
-                lambda _, p=page:
-                self.page_changed.emit(p)
-            )
+        seperator = QFrame()
+        seperator.setFrameShape(QFrame.Shape.HLine)
 
-            layout.addWidget(button)
+        self.main_layout.addWidget(
+            seperator
+        )
 
-        layout.addStretch()
+        self.skill_selector = SkillSelector(
+            game
+        )
+
+
+        self.main_layout.addWidget(
+            self.skill_selector
+        )
+    

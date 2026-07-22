@@ -28,8 +28,6 @@ class SkillPanel(QWidget):
 
         self.skills = {}
 
-
-
     def refresh(self):
 
         if self.game.player is None:

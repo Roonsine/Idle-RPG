@@ -141,8 +141,6 @@ class SkillWidget(QFrame):
             self.unlock_label
         )
 
-
-
     def refresh(self):
 
         skill = self.skill
@@ -219,8 +217,6 @@ class SkillWidget(QFrame):
 
         self.update_unlock()
 
-
-
     def xp_required(
         self,
         level
@@ -233,8 +229,6 @@ class SkillWidget(QFrame):
         """
 
         return level * level * 100
-
-
 
     def update_unlock(self):
 
@@ -258,8 +252,6 @@ class SkillWidget(QFrame):
             self.unlock_label.setText(
                 ""
             )
-
-
 
     def check_tree_unlock(self):
 
@@ -288,8 +280,6 @@ class SkillWidget(QFrame):
         self.unlock_label.setText(
             "All trees unlocked!"
         )
-
-
 
     def check_mining_unlock(self):
 

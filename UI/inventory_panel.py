@@ -10,16 +10,16 @@ class InventoryPanel(QWidget):
         self.game = game
 
 
-        layout = QVBoxLayout()
+        self.main_layout = QVBoxLayout()
 
         self.setLayout(
-            layout
+            self.main_layout
         )
 
 
         self.label = QLabel()
 
-        layout.addWidget(
+        self.main_layout.addWidget(
             self.label
         )
 

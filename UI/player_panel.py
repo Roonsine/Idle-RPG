@@ -13,16 +13,16 @@ class PlayerPanel(QWidget):
 
         self.game = game
 
-        self.layout = QVBoxLayout()
+        self.main_layout = QVBoxLayout()
 
         self.setLayout(
-            self.layout
+            self.main_layout
         )
 
 
         self.label = QLabel()
 
-        self.layout.addWidget(
+        self.main_layout.addWidget(
             self.label
         )
 

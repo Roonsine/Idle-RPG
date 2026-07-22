@@ -2,47 +2,64 @@ from PySide6.QtWidgets import (
     QWidget,
     QLabel,
     QVBoxLayout,
-    QProgressBar
+    QProgressBar,
+    QPushButton
 )
 
+from PySide6.QtCore import Signal
 
 class ActionPanel(QWidget):
     """
     Displays the currently running action.
     """
 
+    stop_requested = Signal()
+
     def __init__(self):
 
         super().__init__()
 
-        layout = QVBoxLayout(self)
+        self.main_layout = QVBoxLayout(self)
 
         title = QLabel("Current Action")
 
-        layout.addWidget(title)
+        self.main_layout.addWidget(title)
 
         self.action_name = QLabel("None")
 
-        layout.addWidget(self.action_name)
+        self.main_layout.addWidget(self.action_name)
 
         self.progress = QProgressBar()
 
         self.progress.setRange(0, 100)
         self.progress.setFormat("%p%")
 
-        layout.addWidget(self.progress)
+        self.main_layout.addWidget(self.progress)
 
         self.remaining = QLabel(
             "Time Remaining: --"
+            
         )
 
-        layout.addWidget(self.remaining)
+        stop = QPushButton(
+            "Stop Action"
+        )
 
-        self.reward = QLabel(
+        stop.clicked.connect(
+            self.stop_requested.emit
+        )
+
+
+        self.main_layout.addWidget(
+            stop
+        )
+        self.main_layout.addWidget(self.remaining)
+
+        self.reward_label = QLabel(
             "Last Reward: None"
         )
 
-        layout.addWidget(self.reward)
+        self.main_layout.addWidget(self.reward_label)
 
     def update_action(self, state):
 
@@ -69,12 +86,12 @@ class ActionPanel(QWidget):
             f"{state.remaining_time():.1f}s"
         )
 
-    def set_reward(self, result):
+    def show_reward(self, reward):
 
-        if result is None:
+        if reward is None:
             return
 
-        self.reward.setText(
-            f"+{result['amount']} {result['item']}\n"
-            f"+{result['xp']} XP"
+        self.reward_label.setText(
+            f"+{reward['amount']} {reward['item']}\n"
+            f"+{reward['xp']} XP"
         )

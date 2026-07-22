@@ -8,6 +8,7 @@ from PySide6.QtWidgets import (
 from PySide6.QtCore import QTimer
 
 
+from UI.skill_selector import SkillSelector
 from UI.player_panel import PlayerPanel
 from UI.skill_panel import SkillPanel
 from UI.inventory_panel import InventoryPanel
@@ -36,6 +37,7 @@ class MainWindow(QMainWindow):
 
         self.game = game
 
+        self.selected_skill = "woodcutting"
 
         self.setWindowTitle(
             "Idle RPG"
@@ -53,6 +55,13 @@ class MainWindow(QMainWindow):
         self.connect_signals()
 
         self.start_timer()
+
+        print("Creating sidebar")
+
+        self.sidebar = Sidebar(
+            self.game
+        )
+
 
 
 
@@ -76,12 +85,18 @@ class MainWindow(QMainWindow):
         # Sidebar
         # -----------------------
 
-        self.sidebar = Sidebar()
+        self.sidebar = Sidebar(
+            self.game
+        )
 
         main_layout.addWidget(
             self.sidebar
         )
 
+
+        self.sidebar.skill_selector.skill_selected.connect(
+            self.change_skill
+        )
 
         # -----------------------
         # Main content
@@ -132,6 +147,9 @@ class MainWindow(QMainWindow):
             self.game
         )
 
+        self.sidebar.skill_selector.skill_selected.connect(
+            self.change_skill
+        )
 
         self.pages = PageStack()
 
@@ -173,19 +191,16 @@ class MainWindow(QMainWindow):
         """
         Connects UI events to game actions.
         """
-
-
-        self.activity_panel.action_selected.connect(
-            self.game.start_action
-        )
-
-
-        self.activity_panel.stop_requested.connect(
-            self.game.stop_action
-        )
-
-        self.sidebar.page_changed.connect(
+        self.sidebar.paged_changed.connect(
             self.pages.show_page
+        )
+
+        self.sidebar.skill_selector.skill_selected.connect(
+                self.change_skill
+            )
+        
+        self.action_panel.stop_requested.connect(
+            self.stop_action
         )
 
 
@@ -204,29 +219,19 @@ class MainWindow(QMainWindow):
             100
         )
 
-
-
     def update_game(self):
 
         result = self.game.update()
 
 
-        if result:
+        if result is not None:
 
-            self.reward_label.setText(
-                f"+{result['amount']} {result['item']}\n"
-                f"+{result['xp']} XP"
+            self.action_panel.show_reward(
+                result
             )
 
 
-        if self.game.skill_level_changed():
-
-            self.activity_panel.refresh()
-
-
         self.refresh()
-
-
 
     def refresh(self):
 
@@ -240,7 +245,22 @@ class MainWindow(QMainWindow):
             self.game.action_state
         )
 
+    def change_skill(self, skill_id):
 
+        self.selected_skill = skill_id
+
+        self.activity_panel.set_skill(
+            skill_id
+        )
+
+    def stop_action(self):
+        """
+        Stops the current player action.
+        """
+
+        self.game.stop_action()
+
+        self.refresh()
 
     def closeEvent(self, event):
 

@@ -28,17 +28,16 @@ class ActivityPanel(QWidget):
 
         self.buttons = []
 
+        self.current_skill = "woodcutting"
 
-        self.layout = QVBoxLayout() # type: ignore
+        self.main_layout = QVBoxLayout() 
 
         self.setLayout(
-            self.layout # type: ignore
+            self.main_layout 
         )
 
 
         self.build()
-
-
 
     def build(self):
 
@@ -46,39 +45,31 @@ class ActivityPanel(QWidget):
             "Activities"
         )
 
-        self.layout.addWidget( # type: ignore
+        self.main_layout.addWidget( 
             title
         )
 
 
         self.create_actions()
 
+    def set_skill(self, skill_id):
 
+        self.current_skill = skill_id
 
-        stop = QPushButton(
-            "Stop Action"
-        )
-
-        stop.clicked.connect(
-            self.stop_requested.emit
-        )
-
-
-        self.layout.addWidget( # type: ignore
-            stop
-        )
-
-
+        self.refresh()
 
     def create_actions(self):
 
-        if self.game.data is None:
-            return
+        if self.current_skill == "woodcutting":
+
+            self.create_tree_actions()
 
 
-        # --------------------
-        # Woodcutting
-        # --------------------
+        elif self.current_skill == "mining":
+
+            self.create_mining_actions()
+
+    def create_tree_actions(self):
 
         for tree_id in self.game.data.trees:
 
@@ -87,55 +78,26 @@ class ActivityPanel(QWidget):
             )
 
 
-            button = QPushButton()
-
-
-            button.setText(
+            button = QPushButton(
                 f"🌳 {tree.name}"
             )
 
 
-            required = tree.level_required
-
-
-            current = (
-                self.game.player.skills["woodcutting"].level
+            button.clicked.connect(
+                lambda checked=False,
+                t=tree_id:
+                self.action_selected.emit(
+                    "woodcutting",
+                    t
+                )
             )
 
 
-            if current >= required:
-
-                button.clicked.connect(
-
-                    lambda checked=False,
-                    t=tree_id:
-                    self.action_selected.emit(
-                        "woodcutting",
-                        t
-                    )
-
-                )
-
-            else:
-
-                button.setText(
-                    f"🔒 {tree.name}\n"
-                    f"Requires Level {required}"
-                )
-
-                button.setEnabled(
-                    False
-                )
-
-
-            self.layout.addWidget( # type: ignore
+            self.main_layout.addWidget(
                 button
             )
-
-
-        # --------------------
-        # Mining
-        # --------------------
+   
+    def create_mining_actions(self):
 
         for rock_id in self.game.data.rocks:
 
@@ -144,49 +106,22 @@ class ActivityPanel(QWidget):
             )
 
 
-            button = QPushButton()
-
-
-            button.setText(
+            button = QPushButton(
                 f"⛏ {rock.name}"
             )
 
 
-            required = rock.level_required
-
-
-            current = (
-                self.game.player.skills["mining"].level
+            button.clicked.connect(
+                lambda checked=False,
+                r=rock_id:
+                self.action_selected.emit(
+                    "mining",
+                    r
+                )
             )
 
 
-            if current >= required:
-
-                button.clicked.connect(
-
-                    lambda checked=False,
-                    r=rock_id:
-                    self.action_selected.emit(
-                        "mining",
-                        r
-                    )
-
-                )
-
-
-            else:
-
-                button.setText(
-                    f"🔒 {rock.name}\n"
-                    f"Requires Level {required}"
-                )
-
-                button.setEnabled(
-                    False
-                )
-
-
-            self.layout.addWidget( # type: ignore
+            self.main_layout.addWidget(
                 button
             )
 
