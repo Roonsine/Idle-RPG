@@ -1,0 +1,44 @@
+[
+    {
+        "id": "raw_shrimp",
+        "name": "Raw Shrimp",
+        "level_required": 1,
+        "xp": 5,
+        "item_id": "raw_shrimp"
+    },
+    {
+        "id": "raw_lobster",
+        "name": "Raw Lobster",
+        "level_required": 40,
+        "xp": 50,
+        "item_id": "raw_lobster"
+    },
+    {
+        "id": "raw_crab",
+        "name": "Raw Crab",
+        "level_required": 60,
+        "xp": 120,
+        "item_id": "raw_crab"
+    },
+    {
+        "id": "raw_sardine",
+        "name": "Raw Sardine",
+        "level_required": 5,
+        "xp": 10,
+        "item_id": "raw_sardine"
+    },
+    {
+        "id": "raw_herring",
+        "name": "Raw Herring",
+        "level_required": 10,
+        "xp": 15,
+        "item_id": "raw_herring"
+    },
+    {
+        "id": "raw_carp",
+        "name": "Raw Carp",
+        "level_required": 65,
+        "xp": 130,
+        "item_id": "raw_carp"
+    }
+]

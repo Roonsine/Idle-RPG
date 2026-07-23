@@ -19,5 +19,12 @@
         "description": "Create equipment from materials.",
         "max_level": 99,
         "icon": "smithing.png"
+    },
+    {
+        "id": "fishing",
+        "name": "Fishing",
+        "description": "Catch fish from various fishing spots.",
+        "max_level": 99,
+        "icon": "fishing.png"
     }
 ]

@@ -36,20 +36,17 @@ class WoodcuttingAction(Action):
 
     def execute(self, player, game_data):
 
-        if not self.can_execute(
-            player,
-            game_data
-        ):
-            raise Exception(
-                "Woodcutting level too low."
-            )
+        player.skills["woodcutting"].add_xp(
+            self.tree.xp
+        )
+
+        player.inventory.add_item(
+            self.tree.log_item_id,
+            1
+        )
 
         return {
-            "skill": "woodcutting",
-
-            "xp": self.tree.xp,
-
             "item": self.tree.log_item_id,
-
-            "amount": 1
+            "amount": 1,
+            "xp": self.tree.xp
         }

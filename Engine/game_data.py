@@ -25,3 +25,7 @@ class GameData:
     equipment: Registry
 
     rocks: Registry
+
+    fishing_spots: Registry
+
+    fish: Registry

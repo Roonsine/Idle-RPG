@@ -13,7 +13,10 @@ from Models import (
     Drop,
     Recipe,
     Equipment,
-    Rock    
+    Rock,
+    Fish,
+    FishingSpot,
+    FishingSpotEntry
 )
 
 from Engine.registry import Registry
@@ -43,57 +46,62 @@ class ResourceLoader:
         with open(path, "r", encoding="utf-8") as file:
             return json.load(file)
 
-
-    def load_items(self):
+    def load_registry(self, filename, model_cls):
 
         registry = Registry()
 
-        for entry in self.load_json("items.json"):
-
-            item = Item(**entry)
-
-            registry.register(item)
+        for entry in self.load_json(filename):
+            registry.register(model_cls(**entry))
 
         return registry
+
+    def load_items(self):
+        return self.load_registry("items.json", Item)
 
 
     def load_skills(self):
-
-        registry = Registry()
-
-        for entry in self.load_json("skills.json"):
-
-            skill = SkillDefinition(**entry)
-
-            registry.register(skill)
-
-        return registry
+        return self.load_registry("skills.json", SkillDefinition)
 
 
     def load_trees(self):
+        return self.load_registry("trees.json", Tree)
 
+    
+    def load_rocks(self):
+        return self.load_registry("rocks.json", Rock)
+
+    def load_fish(self):
         registry = Registry()
 
-        for entry in self.load_json("trees.json"):
+        for entry in self.load_json("fish.json"):
 
-            tree = Tree(**entry)
+            fish = Fish(**entry)
 
-            registry.register(tree)
+            registry.register(fish)
 
         return registry
     
-    def load_rocks(self):
+    def load_fishing_spots(self):
 
         registry = Registry()
 
-        for entry in self.load_json("rocks.json"):
+        for entry in self.load_json("fishing_spots.json"):
 
-            rock = Rock(**entry)
+            fish_entries = []
 
-            registry.register(rock)
+            for fish_data in entry["fish"]:
+
+                fish_entries.append(
+                    FishingSpotEntry(**fish_data)
+                )
+
+            entry["fish"] = fish_entries
+
+            spot = FishingSpot(**entry)
+
+            registry.register(spot)
 
         return registry
-
 
     def load_monsters(self):
 
@@ -119,30 +127,11 @@ class ResourceLoader:
 
 
     def load_recipes(self):
-
-        registry = Registry()
-
-        for entry in self.load_json("recipes.json"):
-
-            recipe = Recipe(**entry)
-
-            registry.register(recipe)
-
-        return registry
+        return self.load_registry("recipes.json", Recipe)
 
 
     def load_equipment(self):
-
-        registry = Registry()
-
-        for entry in self.load_json("equipment.json"):
-
-            equipment = Equipment(**entry)
-
-            registry.register(equipment)
-
-        return registry
-
+        return self.load_registry("equipment.json", Equipment)
 
     def load_all(self):
 
@@ -164,5 +153,9 @@ class ResourceLoader:
 
             equipment=self.load_equipment(),
 
-            rocks= self.load_rocks()
+            rocks= self.load_rocks(),
+
+            fishing_spots=self.load_fishing_spots(),
+            
+            fish=self.load_fish()
         )

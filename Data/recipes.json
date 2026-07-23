@@ -14,5 +14,22 @@
         "xp": 12.5,
         "interval": 5.0,
         "description": "Smelt copper and tin into bronze."
+    },
+    [
+    {
+        "id": "cook_shrimp",
+        "name": "Cook Shrimp",
+        "skill_id": "cooking",
+        "level_required": 1,
+        "ingredients": {
+            "raw_shrimp": 1,
+            "oak_log": 1
+        },
+        "result_item_id": "cooked_shrimp",
+        "result_amount": 1,
+        "xp": 10,
+        "interval": 3,
+        "description": "Cook raw shrimp over a fire to make it edible."
     }
+]
 ]

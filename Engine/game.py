@@ -93,11 +93,6 @@ class Game(QObject):
 
 
         if result:
-
-            self.apply_reward(
-                result
-            )
-
             self.action_completed.emit(
                 result
             )
@@ -111,7 +106,6 @@ class Game(QObject):
         """
 
         self.data = self.loader.load_all()
-
         self.setup_actions()
         self.setup_activities()
 
@@ -258,31 +252,27 @@ class Game(QObject):
         return self.action_manager.state
     
     def start_action(self, action_type, target_id):
-        """
-        Starts a player activity.
-        """
 
-        if self.data is None:
-            raise RuntimeError(
-                "Game data not loaded."
-            )
-
-
-        if self.player is None:
-            raise RuntimeError(
-                "Player does not exist."
-            )
+        print(
+            "START ACTION:",
+            action_type,
+            target_id
+        )
 
 
         action = self.action_registry.create(
-        action_type,
-        target_id,
-        self.data
-    )
-        print(
-        "CREATED ACTION:",
-        type(action)
+            action_type,
+            target_id,
+            self.data
         )
+
+
+        print(
+            "CREATED ACTION:",
+            type(action),
+            action.name
+        )
+
 
         self.action_manager.start(
             action,
@@ -290,7 +280,6 @@ class Game(QObject):
             target_id
         )
 
-        self.action_changed.emit()
 
         return action
     
@@ -305,18 +294,43 @@ class Game(QObject):
         "mining",
         self.action_factory.create_rock_action
         )
+
+        self.action_registry.register(
+            "fishing",
+            self.action_factory.create_fishing_action
+        )
     
     def setup_activities(self):
 
+        assert self.data is not None
+
+        data = self.data
+
+        print("REGISTERING ACTIVITIES")
         self.activity_registry.register(
             "woodcutting",
-            lambda: self.data.trees
+            lambda: data.trees,
+            "🌳",
+            "direct"
         )
 
         self.activity_registry.register(
             "mining",
-            lambda: self.data.rocks
+            lambda: data.rocks,
+            "⛏",
+            "direct"
         )
+
+        self.activity_registry.register(
+            "fishing",
+            lambda: data.fishing_spots,
+            "🎣",
+            "grouped"
+        )
+
+        print(
+        self.activity_registry.activities.keys()
+    )
 
     def stop_action(self):
         """

@@ -203,7 +203,7 @@ class MainWindow(QMainWindow):
             self.action_panel.show_reward
         )
 
-        self.game.skills_changed.connect(
+        self.game.skill_changed.connect(
             self.skill_panel.refresh
         )
 
@@ -227,9 +227,12 @@ class MainWindow(QMainWindow):
 
     def update_game(self):
 
-        self.game.update()
+        result = self.game.update()
 
-        self.action_panel.refresh()
+        if result is not None:
+            self.action_panel.show_reward(result)
+
+        self.refresh()
 
     def refresh(self):
 

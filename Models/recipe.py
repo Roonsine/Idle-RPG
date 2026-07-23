@@ -22,6 +22,8 @@ class Recipe:
 
     outputs: dict[str, int]
 
+    amount: int
+
     level_required: int
 
     xp: float

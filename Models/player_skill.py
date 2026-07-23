@@ -21,6 +21,11 @@ class PlayerSkill:
 
     def add_xp(self, amount):
 
+        print(
+            "ADDING XP:",
+            self.skill_id,
+            amount
+        )
         if self.level >= config.MAX_LEVEL:
 
             self.level = config.MAX_LEVEL

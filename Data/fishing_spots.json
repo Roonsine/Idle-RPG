@@ -1,0 +1,38 @@
+[
+    {
+        "id": "shallow_shores",
+        "name": "Shallow Shores",
+        "interval": 3,
+        "level_required": 1,
+        "fish": [{
+            "fish_id": "raw_shrimp",
+            "weight": 1
+        },
+        {
+            "fish_id": "raw_lobster",
+            "weight": 2
+        },
+        {
+            "fish_id": "raw_crab",
+            "weight": 3
+        }]
+    },
+        {
+        "id": "shrapnel_river",
+        "name": "Shrapnel River",
+        "interval": 3,
+        "level_required": 5,
+        "fish": [{
+            "fish_id": "raw_sardine",
+            "weight": 1
+        },
+        {
+            "fish_id": "raw_herring",
+            "weight": 2
+        },
+        {
+            "fish_id": "raw_carp",
+            "weight": 3
+        }]
+    }
+]

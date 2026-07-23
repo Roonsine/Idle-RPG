@@ -7,3 +7,6 @@ from .drop import Drop
 from .monster import Monster
 from .recipe import Recipe
 from .equipment import Equipment
+from .fishing_spot import FishingSpot
+from .fishing_spot_entry import FishingSpotEntry
+from .fish import Fish
