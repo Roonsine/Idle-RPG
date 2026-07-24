@@ -1,6 +1,7 @@
 from Systems.woodcutting import WoodcuttingAction
 from Systems.mining import MiningAction
 from Systems.fishing import FishingAction
+from Systems.cooking import CookingAction
 
 
 
@@ -19,6 +20,20 @@ class ActionFactory:
 
         return WoodcuttingAction(
             tree
+        )
+
+    def create_cooking_action(
+        self,
+        target_id,
+        game_data
+    ):
+
+        recipe = game_data.recipes.get(
+            target_id
+        )
+
+        return CookingAction(
+            recipe
         )
 
 

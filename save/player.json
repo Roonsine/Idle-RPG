@@ -5,13 +5,13 @@
     "skills": {
         "woodcutting": {
             "level": 3,
-            "xp": 325,
+            "xp": 100,
             "mastery_level": 1,
             "mastery_xp": 0
         },
         "mining": {
             "level": 1,
-            "xp": 60,
+            "xp": 45,
             "mastery_level": 1,
             "mastery_xp": 0
         },
@@ -23,18 +23,24 @@
         },
         "fishing": {
             "level": 1,
-            "xp": 85,
+            "xp": 45,
+            "mastery_level": 1,
+            "mastery_xp": 0
+        },
+        "cooking": {
+            "level": 2,
+            "xp": 90,
             "mastery_level": 1,
             "mastery_xp": 0
         }
     },
     "inventory": {
-        "normal_log": 33,
-        "copper_ore": 16,
-        "raw_shrimp": 19
+        "copper_ore": 9,
+        "cooked_shrimp": 9,
+        "normal_log": 5
     },
     "equipment": {},
     "current_action": null,
-    "last_saved": "2026-07-23T13:58:17.901112",
+    "last_saved": "2026-07-23T20:07:01.038230",
     "last_loaded": ""
 }

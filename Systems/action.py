@@ -58,3 +58,6 @@ class Action:
             results.append(result)
 
         return results
+
+    def get_reward(self):
+        return {}

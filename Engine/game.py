@@ -11,6 +11,7 @@ from Engine.action_manager import ActionManager
 from Engine.action_factory import ActionFactory
 from Engine.action_registry import ActionRegistry
 from Engine.activity_registry import ActivityRegistry
+from Engine.registry import Registry
 
 from Player import Player
 from Models.player_skill import PlayerSkill
@@ -273,6 +274,14 @@ class Game(QObject):
             action.name
         )
 
+        if not action.can_execute(
+            self.player,
+            self.data
+        ):
+
+            self.action_changed.emit()
+
+            return
 
         self.action_manager.start(
             action,
@@ -298,6 +307,11 @@ class Game(QObject):
         self.action_registry.register(
             "fishing",
             self.action_factory.create_fishing_action
+        )
+
+        self.action_registry.register(
+            "cooking",
+            self.action_factory.create_cooking_action
         )
     
     def setup_activities(self):
@@ -327,10 +341,15 @@ class Game(QObject):
             "🎣",
             "grouped"
         )
-
-        print(
-        self.activity_registry.activities.keys()
-    )
+        self.activity_registry.register(
+            "cooking",
+            lambda: data.recipes.filter(
+                lambda r: r.skill_id == "cooking"
+            ),
+            "🍳",
+            "direct"
+        )
+        self.activity_registry.activities.keys()   
 
     def stop_action(self):
         """
@@ -401,15 +420,40 @@ class Game(QObject):
         item_id = reward.get(
             "item"
         )
-
+        assert self.action_manager.current_action is not None
+        reward = (self.action_manager.current_action.get_reward())
         if item_id:
 
-            self.player.inventory.add_item(
-                item_id,
-                reward["amount"]
-            )
+            for item_id, amount in reward:
+
+                self.player.inventory.add_item(
+                    item_id,
+                    amount
+                )
 
             self.inventory_changed.emit()
+
+    def get_cooking_recipes(self):
+
+        assert self.data is not None
+        registry = Registry()
+        data = self.data
+
+        for recipe in data.recipes.values():
+
+            if recipe.skill_id == "cooking":
+
+                registry.register(recipe)
+
+        return registry
+
+
+        self.activity_registry.register(
+            "cooking",
+            get_cooking_recipes,
+            "🍳",
+            "direct"
+        )
 
     def initialize_skill_tracking(self):
 

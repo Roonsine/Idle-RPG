@@ -12,7 +12,7 @@
         "id": "oak_log",
         "name": "Oak Log",
         "description": "A sturdy oak log.",
-        "category": "Material",
+        "category": "log",
         "rarity": "Common",
         "stackable": true,
         "value": 5
@@ -58,6 +58,33 @@
         "name": "Tin Ore",
         "description": "A chunk of tin ore used in smelting.",
         "category": "Material",
+        "rarity":"Common",
+        "stackable": true,
+        "value": 2
+    },
+    {
+        "id": "raw_shrimp",
+        "name": "Raw Shrimp",
+        "description": "A raw shrimp used in cooking",
+        "category": "fish",
+        "rarity":"Common",
+        "stackable": true,
+        "value": 2
+    },
+        {
+        "id": "cooked_shrimp",
+        "name": "Cooked Shrimp",
+        "description": "A Cooked shrimp used to restore HP",
+        "category": "food",
+        "rarity":"Common",
+        "stackable": true,
+        "value": 2
+    },
+       {
+        "id": "raw_crab",
+        "name": "Raw Crab",
+        "description": "A raw crab used in cooking",
+        "category": "fish",
         "rarity":"Common",
         "stackable": true,
         "value": 2

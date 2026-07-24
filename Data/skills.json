@@ -26,5 +26,12 @@
         "description": "Catch fish from various fishing spots.",
         "max_level": 99,
         "icon": "fishing.png"
+    },
+    {
+        "id": "cooking",
+        "name": "Cooking",
+        "description": "Cook raw ingredients into edible food.",
+        "max_level": 99,
+        "icon": "cooking.png"
     }
 ]

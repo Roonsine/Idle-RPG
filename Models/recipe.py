@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 
 @dataclass(slots=True, frozen=True)
@@ -22,12 +22,14 @@ class Recipe:
 
     outputs: dict[str, int]
 
-    amount: int
+    tools: dict[str, int] = field(
+        default_factory=dict
+    )
 
-    level_required: int
+    level_required: int = 1
 
-    xp: float
+    xp: float = 0
 
-    interval: float
+    interval: float = 1
 
     description: str = ""

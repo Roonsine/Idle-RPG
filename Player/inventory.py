@@ -45,11 +45,8 @@ class Inventory:
 
 
     def has_item(self, item_id: str, amount: int = 1):
-        """
-        Check if inventory contains enough.
-        """
 
-        return self.items[item_id] >= amount
+        return self.items.get(item_id, 0) >= amount
 
 
     def get_amount(self, item_id: str):
@@ -67,6 +64,66 @@ class Inventory:
 
         return dict(self.items)
 
+    def has_category(
+        self,
+        category,
+        amount,
+        game_data
+    ):
+
+        total = 0
+
+        for item_id, quantity in self.items.items():
+
+            item = game_data.items.get(
+                item_id
+            )
+
+            if item.category == category:
+
+                total += quantity
+
+
+        return total >= amount
+
+    def remove_category(
+    self,
+    category,
+    amount,
+    game_data
+    ):
+
+        remaining = amount
+
+
+        for item_id, quantity in list(self.items.items()):
+
+            item = game_data.items.get(
+                item_id
+            )
+
+
+            if item.category != category:
+                continue
+
+
+            remove = min(
+                quantity,
+                remaining
+            )
+
+
+            self.remove_item(
+                item_id,
+                remove
+            )
+
+
+            remaining -= remove
+
+
+            if remaining <= 0:
+                break
 
     def __str__(self):
 

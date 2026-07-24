@@ -2,13 +2,16 @@ from PySide6.QtWidgets import (
     QMainWindow,
     QWidget,
     QVBoxLayout,
-    QHBoxLayout
+    QHBoxLayout,
+    QScrollArea
 )
 
-from PySide6.QtCore import QTimer
+from PySide6.QtCore import (
+    QTimer,
+    Qt
+)
 
 
-from UI.skill_selector import SkillSelector
 from UI.player_panel import PlayerPanel
 from UI.skill_panel import SkillPanel
 from UI.inventory_panel import InventoryPanel
@@ -16,7 +19,6 @@ from UI.page_stack import PageStack
 from UI.action_panel import ActionPanel
 from UI.activity_panel import ActivityPanel
 from UI.sidebar import Sidebar
-
 
 
 class MainWindow(QMainWindow):
@@ -48,12 +50,13 @@ class MainWindow(QMainWindow):
         )
 
 
-
         self.setup_ui()
 
         self.connect_signals()
 
         self.start_timer()
+
+
 
     def setup_ui(self):
 
@@ -66,28 +69,65 @@ class MainWindow(QMainWindow):
 
         main_layout = QHBoxLayout()
 
+        main_layout.setContentsMargins(
+            5,
+            5,
+            5,
+            5
+        )
+
+        main_layout.setSpacing(
+            5
+        )
+
         central.setLayout(
             main_layout
         )
 
 
-        # -----------------------
-        # Sidebar
-        # -----------------------
+        # =======================
+        # LEFT SIDEBAR
+        # =======================
 
         self.sidebar = Sidebar(
             self.game
         )
 
-        main_layout.addWidget(
+
+        self.sidebar_scroll = QScrollArea()
+
+        self.sidebar_scroll.setWidgetResizable(
+            True
+        )
+
+
+        self.sidebar_scroll.setHorizontalScrollBarPolicy(
+            Qt.ScrollBarPolicy.ScrollBarAlwaysOff
+        )
+
+
+        self.sidebar_scroll.setWidget(
             self.sidebar
         )
 
-        # -----------------------
-        # Main content
-        # -----------------------
+
+        main_layout.addWidget(
+            self.sidebar_scroll,
+            1
+        )
+
+
+
+        # =======================
+        # CENTER CONTENT
+        # =======================
 
         content_layout = QVBoxLayout()
+
+
+        content_layout.setSpacing(
+            5
+        )
 
 
         main_layout.addLayout(
@@ -96,18 +136,18 @@ class MainWindow(QMainWindow):
         )
 
 
-        # Activity buttons
-
-        self.activity_panel = ActivityPanel(self.game)
+        self.activity_panel = ActivityPanel(
+            self.game
+        )
 
         content_layout.addWidget(
             self.activity_panel
         )
 
 
-        # Current action
-
-        self.action_panel = ActionPanel(self.game)
+        self.action_panel = ActionPanel(
+            self.game
+        )
 
         content_layout.addWidget(
             self.action_panel
@@ -115,22 +155,24 @@ class MainWindow(QMainWindow):
 
 
 
-        # -----------------------
-        # Right information panel
-        # -----------------------
-
+        # =======================
+        # RIGHT INFORMATION PANEL
+        # =======================
 
         self.player_panel = PlayerPanel(
             self.game
         )
 
+
         self.skill_panel = SkillPanel(
             self.game
         )
 
+
         self.inventory_panel = InventoryPanel(
             self.game
         )
+
 
         self.pages = PageStack()
 
@@ -166,15 +208,24 @@ class MainWindow(QMainWindow):
             2
         )
 
+
+
+        # =======================
+        # REFRESHABLE PANELS
+        # =======================
+
         self.refreshables = [
             self.player_panel,
             self.skill_panel,
             self.inventory_panel,
             self.action_panel
         ]
-        
+
+
         for panel in self.refreshables:
             panel.refresh()
+
+
 
     def connect_signals(self):
 
@@ -182,13 +233,16 @@ class MainWindow(QMainWindow):
             self.pages.show_page
         )
 
+
         self.sidebar.skill_selector.skill_selected.connect(
             self.activity_panel.set_skill
         )
 
+
         self.activity_panel.action_selected.connect(
             self.game.start_action
         )
+
 
         self.action_panel.stop_requested.connect(
             self.game.stop_action
@@ -199,17 +253,22 @@ class MainWindow(QMainWindow):
             self.action_panel.refresh
         )
 
+
         self.game.action_completed.connect(
             self.action_panel.show_reward
         )
+
 
         self.game.skill_changed.connect(
             self.skill_panel.refresh
         )
 
+
         self.game.inventory_changed.connect(
             self.inventory_panel.refresh
         )
+
+
 
     def start_timer(self):
 
@@ -225,19 +284,31 @@ class MainWindow(QMainWindow):
             100
         )
 
+
+
     def update_game(self):
 
         result = self.game.update()
 
+
         if result is not None:
-            self.action_panel.show_reward(result)
+
+            self.action_panel.show_reward(
+                result
+            )
+
 
         self.refresh()
+
+
 
     def refresh(self):
 
         for panel in self.refreshables:
+
             panel.refresh()
+
+
 
     def closeEvent(self, event):
 

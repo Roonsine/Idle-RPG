@@ -41,6 +41,16 @@ class Registry:
     def values(self):
         return self._objects.values()
 
+    def filter(self, predicate):
+
+        registry = Registry()
+
+        for obj in self._objects.values():
+
+            if predicate(obj):
+                registry.register(obj)
+
+        return registry
 
     def items(self):
         return self._objects.items()

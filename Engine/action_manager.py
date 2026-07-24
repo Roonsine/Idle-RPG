@@ -86,6 +86,11 @@ class ActionManager:
             player,
             game_data
         )
+        if result and result.get("success") is False:
+
+            self.stop()
+
+            return result
 
 
         if self.state is not None:

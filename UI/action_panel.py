@@ -92,13 +92,29 @@ class ActionPanel(QWidget):
             f"Time Remaining: "
             f"{state.remaining_time():.1f}s"
         )
-
     def show_reward(self, reward):
 
-        if reward is None:
+        if not reward:
             return
+
+
+        # Handle failed actions
+
+        if reward.get("success") is False:
+
+            self.reward_label.setText(
+                reward.get(
+                    "message",
+                    "Action stopped."
+                )
+            )
+
+            return
+
+
+        # Normal reward
 
         self.reward_label.setText(
             f"+{reward['amount']} {reward['item']}\n"
-            f"+{reward['xp']} XP"
+            f"+{reward.get('xp', 0)} XP"
         )

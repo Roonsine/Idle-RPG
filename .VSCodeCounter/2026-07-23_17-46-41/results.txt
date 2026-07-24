@@ -1,0 +1,98 @@
+Date : 2026-07-23 17:46:41
+Directory : d:\repo\Idle RPG
+Total : 63 files,  2343 codes, 352 comments, 1293 blanks, all 3988 lines
+
+Languages
++--------------------+------------+------------+------------+------------+------------+
+| language           | files      | code       | comment    | blank      | total      |
++--------------------+------------+------------+------------+------------+------------+
+| Python             |         51 |      1,994 |        352 |      1,292 |      3,638 |
+| JSON               |         10 |        341 |          0 |          0 |        341 |
+| JSON with Comments |          1 |          8 |          0 |          0 |          8 |
+| pip requirements   |          1 |          0 |          0 |          1 |          1 |
++--------------------+------------+------------+------------+------------+------------+
+
+Directories
++-----------------------------------------------+------------+------------+------------+------------+------------+
+| path                                          | files      | code       | comment    | blank      | total      |
++-----------------------------------------------+------------+------------+------------+------------+------------+
+| .                                             |         63 |      2,343 |        352 |      1,293 |      3,988 |
+| . (Files)                                     |          4 |         75 |         28 |         61 |        164 |
+| Data                                          |          9 |        297 |          0 |          0 |        297 |
+| Engine                                        |         15 |        741 |        132 |        461 |      1,334 |
+| Models                                        |         13 |        155 |         53 |        114 |        322 |
+| Player                                        |          3 |         43 |         30 |         35 |        108 |
+| Systems                                       |          6 |        198 |         24 |         99 |        321 |
+| UI                                            |         12 |        790 |         85 |        523 |      1,398 |
+| save                                          |          1 |         44 |          0 |          0 |         44 |
++-----------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-----------------------------------------------+--------------------+------------+------------+------------+------------+
+| filename                                      | language           | code       | comment    | blank      | total      |
++-----------------------------------------------+--------------------+------------+------------+------------+------------+
+| d:\repo\Idle RPG\Data\equipment.json          | JSON               |         13 |          0 |          0 |         13 |
+| d:\repo\Idle RPG\Data\fish.json               | JSON               |         44 |          0 |          0 |         44 |
+| d:\repo\Idle RPG\Data\fishing_spots.json      | JSON               |         38 |          0 |          0 |         38 |
+| d:\repo\Idle RPG\Data\items.json              | JSON               |         65 |          0 |          0 |         65 |
+| d:\repo\Idle RPG\Data\monsters.json           | JSON               |         26 |          0 |          0 |         26 |
+| d:\repo\Idle RPG\Data\recipes.json            | JSON               |         34 |          0 |          0 |         34 |
+| d:\repo\Idle RPG\Data\rocks.json              | JSON               |         20 |          0 |          0 |         20 |
+| d:\repo\Idle RPG\Data\skills.json             | JSON               |         37 |          0 |          0 |         37 |
+| d:\repo\Idle RPG\Data\trees.json              | JSON               |         20 |          0 |          0 |         20 |
+| d:\repo\Idle RPG\Engine\__init__.py           | Python             |          0 |          0 |          1 |          1 |
+| d:\repo\Idle RPG\Engine\action_factory.py     | Python             |         53 |          0 |         20 |         73 |
+| d:\repo\Idle RPG\Engine\action_manager.py     | Python             |         57 |          4 |         49 |        110 |
+| d:\repo\Idle RPG\Engine\action_registry.py    | Python             |         20 |          0 |         12 |         32 |
+| d:\repo\Idle RPG\Engine\action_state.py       | Python             |         38 |          3 |         25 |         66 |
+| d:\repo\Idle RPG\Engine\activity_registry.py  | Python             |         17 |          0 |          8 |         25 |
+| d:\repo\Idle RPG\Engine\game.py               | Python             |        255 |         37 |        138 |        430 |
+| d:\repo\Idle RPG\Engine\game_data.py          | Python             |         13 |          6 |         12 |         31 |
+| d:\repo\Idle RPG\Engine\offline_progress.py   | Python             |         29 |         26 |         18 |         73 |
+| d:\repo\Idle RPG\Engine\registry.py           | Python             |         23 |         18 |         14 |         55 |
+| d:\repo\Idle RPG\Engine\resource_loader.py    | Python             |         87 |          9 |         65 |        161 |
+| d:\repo\Idle RPG\Engine\save_data.py          | Python             |         12 |          3 |         11 |         26 |
+| d:\repo\Idle RPG\Engine\save_manager.py       | Python             |         40 |         15 |         23 |         78 |
+| d:\repo\Idle RPG\Engine\serializer.py         | Python             |         78 |          6 |         48 |        132 |
+| d:\repo\Idle RPG\Engine\xp.py                 | Python             |         19 |          5 |         17 |         41 |
+| d:\repo\Idle RPG\Models\__init__.py           | Python             |         12 |          0 |          0 |         12 |
+| d:\repo\Idle RPG\Models\drop.py               | Python             |          7 |         13 |          6 |         26 |
+| d:\repo\Idle RPG\Models\equipment.py          | Python             |         12 |          5 |         11 |         28 |
+| d:\repo\Idle RPG\Models\fish.py               | Python             |          9 |          0 |          4 |         13 |
+| d:\repo\Idle RPG\Models\fishing_spot.py       | Python             |          9 |          0 |          1 |         10 |
+| d:\repo\Idle RPG\Models\fishing_spot_entry.py | Python             |          5 |          0 |          1 |          6 |
+| d:\repo\Idle RPG\Models\item.py               | Python             |         13 |          8 |         11 |         32 |
+| d:\repo\Idle RPG\Models\monster.py            | Python             |         15 |          8 |         13 |         36 |
+| d:\repo\Idle RPG\Models\player_skill.py       | Python             |         33 |          0 |         31 |         64 |
+| d:\repo\Idle RPG\Models\recipe.py             | Python             |         12 |          8 |         11 |         31 |
+| d:\repo\Idle RPG\Models\rocks.py              | Python             |         10 |          3 |          9 |         22 |
+| d:\repo\Idle RPG\Models\skill.py              | Python             |          8 |          8 |          7 |         23 |
+| d:\repo\Idle RPG\Models\tree.py               | Python             |         10 |          0 |          9 |         19 |
+| d:\repo\Idle RPG\Player\__init__.py           | Python             |          2 |          0 |          0 |          2 |
+| d:\repo\Idle RPG\Player\inventory.py          | Python             |         25 |         24 |         27 |         76 |
+| d:\repo\Idle RPG\Player\player.py             | Python             |         16 |          6 |          8 |         30 |
+| d:\repo\Idle RPG\Systems\__init__.py          | Python             |          5 |          0 |          0 |          5 |
+| d:\repo\Idle RPG\Systems\action.py            | Python             |         27 |         15 |         18 |         60 |
+| d:\repo\Idle RPG\Systems\cooking.py           | Python             |         56 |          3 |         29 |         88 |
+| d:\repo\Idle RPG\Systems\fishing.py           | Python             |         55 |          0 |         26 |         81 |
+| d:\repo\Idle RPG\Systems\mining.py            | Python             |         23 |          3 |          9 |         35 |
+| d:\repo\Idle RPG\Systems\woodcutting.py       | Python             |         32 |          3 |         17 |         52 |
+| d:\repo\Idle RPG\UI\Idle RPG.code-workspace   | JSON with Comments |          8 |          0 |          0 |          8 |
+| d:\repo\Idle RPG\UI\__init__.py               | Python             |          0 |          0 |          1 |          1 |
+| d:\repo\Idle RPG\UI\action_panel.py           | Python             |         65 |          3 |         36 |        104 |
+| d:\repo\Idle RPG\UI\activity_panel.py         | Python             |        219 |         13 |        138 |        370 |
+| d:\repo\Idle RPG\UI\inventory_panel.py        | Python             |         26 |          0 |         26 |         52 |
+| d:\repo\Idle RPG\UI\main_window.py            | Python             |        145 |         20 |         92 |        257 |
+| d:\repo\Idle RPG\UI\page_stack.py             | Python             |         24 |          0 |         17 |         41 |
+| d:\repo\Idle RPG\UI\player_panel.py           | Python             |         24 |          5 |         22 |         51 |
+| d:\repo\Idle RPG\UI\sidebar.py                | Python             |         50 |          0 |         24 |         74 |
+| d:\repo\Idle RPG\UI\skill_panel.py            | Python             |         41 |          2 |         29 |         72 |
+| d:\repo\Idle RPG\UI\skill_selector.py         | Python             |         33 |          3 |         23 |         59 |
+| d:\repo\Idle RPG\UI\skill_widget.py           | Python             |        155 |         39 |        115 |        309 |
+| d:\repo\Idle RPG\config.py                    | Python             |         23 |         28 |         20 |         71 |
+| d:\repo\Idle RPG\main.py                      | Python             |         21 |          0 |         18 |         39 |
+| d:\repo\Idle RPG\requirements.txt             | pip requirements   |          0 |          0 |          1 |          1 |
+| d:\repo\Idle RPG\save\player.json             | JSON               |         44 |          0 |          0 |         44 |
+| d:\repo\Idle RPG\test_factory.py              | Python             |         31 |          0 |         22 |         53 |
+| Total                                         |                    |      2,343 |        352 |      1,293 |      3,988 |
++-----------------------------------------------+--------------------+------------+------------+------------+------------+
