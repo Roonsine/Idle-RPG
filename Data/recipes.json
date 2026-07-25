@@ -37,7 +37,7 @@
         "id": "cook_lobster",
         "name": "Cook Lobster",
         "skill_id": "cooking",
-        "level_required": 5,
+        "level_required": 40,
         "inputs": {
             "raw_lobster": 1
         },
@@ -47,8 +47,8 @@
         "outputs": {
             "cooked_lobster": 1
         },
-        "xp": 10,
-        "interval": 3,
+        "xp": 66,
+        "interval": 5,
         "description": "Cook raw lobster over a fire to make it edible."
     }
 ]

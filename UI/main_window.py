@@ -273,13 +273,15 @@ class MainWindow(QMainWindow):
     ):
 
         print(
-            f"""
-    LEVEL UP!
-
-    {event['skill_id']}
-    {event['old_level']} -> {event['new_level']}
-    """
+            f"\n🎉 {event['skill_id'].title()} Level {event['new_level']}!"
         )
+
+
+        for unlock in event["unlocks"]:
+
+            print(
+                f"Unlocked {unlock['type']}: {unlock['name']}"
+            )
 
     def start_timer(self):
 

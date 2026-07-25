@@ -1,5 +1,33 @@
 class UnlockManager:
 
+    def __init__(self):
+
+        self.skill_sources = {
+            "woodcutting": (
+                "trees",
+                "tree"
+            ),
+
+            "mining": (
+                "rocks",
+                "rock"
+            ),
+
+            "fishing": (
+                "fish",
+                "fish"
+            ),
+
+            "cooking": (
+                "recipes",
+                "recipe"
+            ),
+
+            "smithing": (
+                "recipes",
+                "recipe"
+            )
+        }
 
     def check_unlocks(
         self,
@@ -9,69 +37,38 @@ class UnlockManager:
 
         skill_id = skill_event["skill_id"]
 
-        old_level = skill_event["old_level"]
+        source = self.skill_sources.get(
+            skill_id
+        )
 
-        new_level = skill_event["new_level"]
+        if source is None:
+            return []
 
+        registry_name, unlock_type = source
+
+        registry = getattr(
+            game_data,
+            registry_name
+        )
 
         unlocks = []
 
+        for obj in registry.values():
 
-        if skill_id == "fishing":
+            if (
+                skill_event["old_level"]
+                <
+                obj.level_required
+                <=
+                skill_event["new_level"]
+            ):
 
-            for fish in game_data.fish.values():
-
-                if (
-                    old_level < fish.level_required
-                    and
-                    new_level >= fish.level_required
-                ):
-
-                    unlocks.append(
-                        {
-                            "type": "fish",
-                            "id": fish.id,
-                            "name": fish.name
-                        }
-                    )
-
-
-        if skill_id == "woodcutting":
-
-            for tree in game_data.trees.values():
-
-                if (
-                    old_level < tree.level_required
-                    and
-                    new_level >= tree.level_required
-                ):
-
-                    unlocks.append(
-                        {
-                            "type": "tree",
-                            "id": tree.id,
-                            "name": tree.name
-                        }
-                    )
-
-
-        if skill_id == "cooking":
-
-            for recipe in game_data.recipes.values():
-
-                if (
-                    old_level < recipe.level_required
-                    and
-                    new_level >= recipe.level_required
-                ):
-
-                    unlocks.append(
-                        {
-                            "type": "recipe",
-                            "id": recipe.id,
-                            "name": recipe.name
-                        }
-                    )
-
+                unlocks.append(
+                    {
+                        "type": unlock_type,
+                        "id": obj.id,
+                        "name": obj.name
+                    }
+                )
 
         return unlocks

@@ -112,11 +112,11 @@ class Game(QObject):
                             self.data
                         )
                     )
-                    skill_event["unlocks"] = unlocks
+                skill_event["unlocks"] = unlocks
 
-                    self.level_up.emit(
-                        skill_event
-                    )
+                self.level_up.emit(
+                    skill_event
+                )
 
 
                 self.skill_changed.emit()

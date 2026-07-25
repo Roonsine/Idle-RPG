@@ -1,0 +1,17 @@
+"filename", "language", "Python", "JSON", "comment", "blank", "total"
+"d:\repo\Idle RPG\Data\items.json", "JSON", 0, 45, 0, 0, 45
+"d:\repo\Idle RPG\Data\recipes.json", "JSON", 0, 18, 0, 0, 18
+"d:\repo\Idle RPG\Engine\game.py", "Python", 17, 0, 0, 5, 22
+"d:\repo\Idle RPG\Engine\unlock_manager.py", "Python", 53, 0, 0, 24, 77
+"d:\repo\Idle RPG\Engine\xp_table.py", "Python", 22, 0, 0, 17, 39
+"d:\repo\Idle RPG\Models\player_skill.py", "Python", -1, 0, 0, -10, -11
+"d:\repo\Idle RPG\Player\player.py", "Python", 3, 0, 0, 1, 4
+"d:\repo\Idle RPG\Systems\cooking.py", "Python", 1, 0, 0, 0, 1
+"d:\repo\Idle RPG\Systems\fishing.py", "Python", 1, 0, 0, 0, 1
+"d:\repo\Idle RPG\Systems\mining.py", "Python", 1, 0, 0, 0, 1
+"d:\repo\Idle RPG\Systems\smithing.py", "Python", 81, 0, 4, 40, 125
+"d:\repo\Idle RPG\Systems\woodcutting.py", "Python", 1, 0, 0, 0, 1
+"d:\repo\Idle RPG\UI\main_window.py", "Python", -15, 0, 53, -33, 5
+"d:\repo\Idle RPG\UI\skill_widget.py", "Python", 8, 0, -5, -3, 0
+"d:\repo\Idle RPG\save\player.json", "JSON", 0, 3, 0, 0, 3
+"Total", "-", 172, 66, 52, 41, 331

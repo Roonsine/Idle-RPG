@@ -28,22 +28,30 @@
             "mastery_xp": 0
         },
         "cooking": {
-            "level": 1,
-            "xp": 70,
+            "level": 8,
+            "xp": 890,
             "mastery_level": 1,
             "mastery_xp": 0
         }
     },
     "inventory": {
-        "raw_shrimp": 167,
+        "raw_shrimp": 85,
         "raw_sardine": 15,
-        "cooked_shrimp": 7,
-        "normal_log": 111,
+        "cooked_shrimp": 89,
+        "normal_log": 29,
         "oak_log": 26,
         "copper_ore": 17
     },
     "equipment": {},
-    "current_action": null,
-    "last_saved": "2026-07-24T21:48:12.053336",
+    "current_action": {
+        "action_id": "cook_shrimp",
+        "action_type": "cooking",
+        "target_id": "cook_shrimp",
+        "action_name": "Cook Shrimp",
+        "completed": 14,
+        "started_at": "2026-07-24T21:57:28.067684",
+        "completes_at": "2026-07-24T21:57:31.067684"
+    },
+    "last_saved": "2026-07-24T21:57:29.131330",
     "last_loaded": ""
 }

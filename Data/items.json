@@ -48,7 +48,7 @@
         "id": "copper_ore",
         "name": "Copper Ore",
         "description": "A chunk of copper ore used in smelting.",
-        "category": "Material",
+        "category": "ore",
         "rarity":"Common",
         "stackable": true,
         "value": 2
@@ -57,7 +57,7 @@
         "id": "tin_ore",
         "name": "Tin Ore",
         "description": "A chunk of tin ore used in smelting.",
-        "category": "Material",
+        "category": "ore",
         "rarity":"Common",
         "stackable": true,
         "value": 2
@@ -90,14 +90,15 @@
         "value": 2
     },
     {
-    "id": "raw_lobster",
-    "name": "Raw Lobster",
-    "description": "A raw lobster used in cooking.",
-    "category": "fish",
-    "rarity": "common",
-    "stackable": true,
-    "value": 10
-    },        {
+        "id": "raw_lobster",
+        "name": "Raw Lobster",
+        "description": "A raw lobster used in cooking.",
+        "category": "fish",
+        "rarity": "common",
+        "stackable": true,
+        "value": 10
+    },        
+    {
         "id": "cooked_lobster",
         "name": "Cooked Lobster",
         "description": "A Cooked Lobster used to restore HP",

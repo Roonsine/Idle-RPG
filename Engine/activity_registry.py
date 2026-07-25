@@ -10,13 +10,14 @@ class ActivityRegistry:
         skill_id,
         provider,
         icon,
-        activity_type="direct"
+        activity_type="direct",
+        
     ):
 
         self.activities[skill_id] = {
             "provider": provider,
             "icon": icon,
-            "type": activity_type
+            "type": activity_type,
         }
 
 
