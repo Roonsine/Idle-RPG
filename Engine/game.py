@@ -1,6 +1,7 @@
 from pathlib import Path
 from unittest import result
 from PySide6.QtCore import QObject, Signal
+import config
 
 from Engine.offline_progress import OfflineProgress
 from Engine.serializer import Serializer
@@ -9,6 +10,7 @@ from Engine.resource_loader import ResourceLoader
 from Engine.game_data import GameData
 from Engine.action_manager import ActionManager
 from Engine.action_factory import ActionFactory
+from Engine.mastery_manager import MasteryManager
 from Engine.action_registry import ActionRegistry
 from Engine.activity_registry import ActivityRegistry
 from Engine.registry import Registry
@@ -32,6 +34,9 @@ class Game(QObject):
     inventory_changed = Signal()
     skill_changed = Signal()
     level_up = Signal(dict)
+    mastery_level_up = Signal(dict)
+    
+
 
     def __init__(self, data_directory: Path):
 
@@ -40,7 +45,7 @@ class Game(QObject):
         self.loader = ResourceLoader(
             data_directory
         )
-
+        self.MAX_LEVEL = config.MAX_LEVEL
         self.data: GameData | None = None
 
         self.player: Player | None = None
@@ -52,6 +57,7 @@ class Game(QObject):
 
         self.offline_progress = OfflineProgress()
 
+        self.mastery_manager = MasteryManager()
         self.unlock_manager = UnlockManager()
         self.action_manager = ActionManager()
         self.action_factory = ActionFactory()
@@ -94,11 +100,16 @@ class Game(QObject):
             self.player,
             self.data
         )
+
+
         if result:
 
             skill_event = result.get(
                 "skill_event"
             )
+
+
+            unlocks = []
 
 
             if skill_event:
@@ -112,17 +123,52 @@ class Game(QObject):
                             self.data
                         )
                     )
+
+
                 skill_event["unlocks"] = unlocks
 
-                self.level_up.emit(
-                    skill_event
-                )
+
+                #
+                # Only emit level_up for actual level ups
+                #
+                if skill_event["level_up"]:
+
+                    self.level_up.emit(
+                        skill_event
+                    )
+
+
+                #
+                # Mastery processing
+                #
+                skill = self.player.skills[
+                    skill_event["skill_id"]
+                ]
+
+
+                if skill.level >= self.MAX_LEVEL:
+
+                    mastery_event = (
+                        self.mastery_manager
+                        .add_mastery_xp(
+                            skill,
+                            skill_event["xp_gained"]
+                        )
+                    )
+
+                    result["mastery_event"] = mastery_event
+
+                    if mastery_event["level_up"]:
+                        self.mastery_level_up.emit(
+                            mastery_event
+                        )
 
 
                 self.skill_changed.emit()
 
+
         return result
-    
+
     def load(self):
         """
         Load all static game content.

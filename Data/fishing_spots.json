@@ -34,5 +34,27 @@
             "fish_id": "Raw carp",
             "weight": 3
         }]
+    },
+            {
+        "id": "Trench_of_Despair",
+        "name": "Trench Of Despair",
+        "interval": 3,
+        "level_required": 8,
+        "fish": [{
+            "fish_id": "Raw Blowfish",
+            "weight": 1
+        },
+        {
+            "fish_id": "Raw Poison Fish",
+            "weight": 2
+        },
+        {
+            "fish_id": "Raw Anglerfish",
+            "weight": 3
+        },
+        {
+            "fish_id":"Raw Cavefish",
+            "weight": 3
+        }]
     }
 ]

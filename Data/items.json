@@ -133,5 +133,42 @@
         "rarity": "common",
         "stackable": true,
         "value": 12
+    },
+    {
+        "id": "raw_blowfish",
+        "name": "Raw Blowfish",
+        "description": "A raw blowfish used in cooking.",
+        "category": "fish",
+        "rarity": "common",
+        "stackable": true,
+        "value": 5
+    },
+    {
+        "id": "raw_poison_fish",
+        "name": "Raw Poisonfish",
+        "description": "A raw poison fish used in cooking.",
+        "category": "fish",
+        "rarity": "common",
+        "stackable": true,
+        "value": 40
+    },
+    {
+        "id": "raw_anglerfish",
+        "name": "Raw Anglerfish",
+        "description": "A raw anglerfish used in cooking.",
+        "category": "fish",
+        "rarity": "common",
+        "stackable": true,
+        "value": 50
+    },
+    {
+        "id": "raw_cavefish",
+        "name": "Raw Cavefish",
+        "description": "A raw cavefish used in cooking.",
+        "category": "fish",
+        "rarity": "common",
+        "stackable": true,
+        "value": 215
     }
+
 ]

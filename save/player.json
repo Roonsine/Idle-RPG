@@ -4,14 +4,14 @@
     "gold": 0,
     "skills": {
         "woodcutting": {
-            "level": 19,
-            "xp": 4250,
+            "level": 99,
+            "xp": 10000000000699.777,
             "mastery_level": 1,
-            "mastery_xp": 0
+            "mastery_xp": 165
         },
         "mining": {
             "level": 2,
-            "xp": 85,
+            "xp": 110,
             "mastery_level": 1,
             "mastery_xp": 0
         },
@@ -22,8 +22,8 @@
             "mastery_xp": 0
         },
         "fishing": {
-            "level": 9,
-            "xp": 1020,
+            "level": 26,
+            "xp": 9516,
             "mastery_level": 1,
             "mastery_xp": 0
         },
@@ -35,23 +35,16 @@
         }
     },
     "inventory": {
-        "raw_shrimp": 85,
+        "raw_shrimp": 1033,
         "raw_sardine": 15,
         "cooked_shrimp": 89,
-        "normal_log": 29,
-        "oak_log": 26,
-        "copper_ore": 17
+        "normal_log": 70,
+        "oak_log": 30,
+        "copper_ore": 22,
+        "raw_blowfish": 313
     },
     "equipment": {},
-    "current_action": {
-        "action_id": "cook_shrimp",
-        "action_type": "cooking",
-        "target_id": "cook_shrimp",
-        "action_name": "Cook Shrimp",
-        "completed": 14,
-        "started_at": "2026-07-24T21:57:28.067684",
-        "completes_at": "2026-07-24T21:57:31.067684"
-    },
-    "last_saved": "2026-07-24T21:57:29.131330",
+    "current_action": null,
+    "last_saved": "2026-07-25T19:12:55.516378",
     "last_loaded": ""
 }

@@ -40,5 +40,33 @@
         "level_required": 65,
         "xp": 130,
         "item_id": "raw_carp"
+    },
+    {
+        "id": "Raw Blowfish",
+        "name": "Raw Poisonfish",
+        "level_required": 8,
+        "xp": 12,
+        "item_id": "raw_blowfish"
+    },
+        {
+        "id": "Raw Poison Fish",
+        "name": "Raw Poison Fish",
+        "level_required": 30,
+        "xp": 25,
+        "item_id": "raw_poison_fish"
+    },
+        {
+        "id": "Raw Anglerfish",
+        "name": "Raw Anglerfish",
+        "level_required": 50,
+        "xp": 100,
+        "item_id": "raw_anglerfish"
+    },
+        {
+        "id": "Raw Cavefish",
+        "name": "Raw Cavefish",
+        "level_required": 75,
+        "xp": 300,
+        "item_id": "raw_cavefish"
     }
 ]

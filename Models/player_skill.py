@@ -14,10 +14,9 @@ class PlayerSkill:
 
     xp: float = 0
 
-    mastery_level: int = 1
+    mastery_level: float = 0
 
     mastery_xp: float = 0
-
 
     def add_xp(
         self,
@@ -29,9 +28,13 @@ class PlayerSkill:
 
         self.xp += amount
 
-
-        self.level = level_from_xp(
+        new_level = level_from_xp(
             self.xp
+        )
+
+        self.level = min(
+            new_level,
+            99
         )
 
 
