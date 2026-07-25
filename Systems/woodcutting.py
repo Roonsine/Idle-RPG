@@ -36,7 +36,7 @@ class WoodcuttingAction(Action):
 
     def execute(self, player, game_data):
 
-        player.skills["woodcutting"].add_xp(
+        xp_result = player.skills["woodcutting"].add_xp(
             self.tree.xp
         )
 
@@ -48,5 +48,6 @@ class WoodcuttingAction(Action):
         return {
             "item": self.tree.log_item_id,
             "amount": 1,
-            "xp": self.tree.xp
+            "xp": self.tree.xp,
+            "skill_event":xp_result
         }

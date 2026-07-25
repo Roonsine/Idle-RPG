@@ -1,7 +1,7 @@
 from Systems.action import Action
 
 
-class CookingAction(Action):
+class SmithingAction(Action):
 
     def __init__(self, recipe):
 
@@ -10,7 +10,7 @@ class CookingAction(Action):
         super().__init__(
             id=recipe.id,
             name=recipe.name,
-            category="cooking",
+            category="smithing",
             interval=recipe.interval
         )
 
@@ -21,9 +21,9 @@ class CookingAction(Action):
         game_data
     ):
 
-        cooking = player.skills["cooking"]
+        smithing = player.skills["smithing"]
 
-        if cooking.level < self.recipe.level_required:
+        if smithing.level < self.recipe.level_required:
             return False
 
 
@@ -95,7 +95,7 @@ class CookingAction(Action):
 
         # Give XP
 
-        xp_result = player.skills["cooking"].add_xp(
+        xp_result = player.skills["smithing"].add_xp(
             self.recipe.xp
         )
 

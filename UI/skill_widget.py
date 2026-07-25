@@ -5,9 +5,8 @@ from PySide6.QtWidgets import (
     QProgressBar,
 
 )
-
 from PySide6.QtCore import Qt
-
+from Engine.xp_table import xp_for_level
 
 class SkillWidget(QFrame):
     """
@@ -163,33 +162,55 @@ class SkillWidget(QFrame):
         )
 
 
-        current_xp = skill.xp
-
-
-        required_xp = self.xp_required(
-            skill.level
-        )
-
-
         if skill.level >= 99:
 
             progress = 100
 
-            current_xp = 0
-
-            required_xp = 0
-
-
-        else:
-
-            progress = int(
-                (
-                    current_xp /
-                    required_xp
-                )
-                *
-                100
+            self.progress_bar.setValue(
+                progress
             )
+
+            self.progress_percent.setText(
+                "100%"
+            )
+
+            self.xp_label.setText(
+                "MAX LEVEL"
+            )
+
+            return
+
+
+        current_level_xp = xp_for_level(
+            skill.level
+        )
+
+
+        next_level_xp = xp_for_level(
+            skill.level + 1
+        )
+
+
+        xp_into_level = (
+            skill.xp -
+            current_level_xp
+        )
+
+
+        xp_needed = (
+            next_level_xp -
+            current_level_xp
+        )
+
+
+        progress = int(
+            (
+                xp_into_level /
+                xp_needed
+            )
+            *
+            100
+        )
 
 
         self.progress_bar.setValue(
@@ -202,33 +223,12 @@ class SkillWidget(QFrame):
         )
 
 
-        if skill.level >= 99:
-
-            self.xp_label.setText(
-                "MAX LEVEL"
-            )
-
-        else:
-
-            self.xp_label.setText(
-                f"{current_xp} / {required_xp} XP"
-            )
+        self.xp_label.setText(
+            f"{int(skill.xp)} / {next_level_xp} XP"
+        )
 
 
         self.update_unlock()
-
-    def xp_required(
-        self,
-        level
-    ):
-
-        """
-        Temporary XP curve.
-
-        Replace later with Engine/xp.py
-        """
-
-        return level * level * 100
 
     def update_unlock(self):
 

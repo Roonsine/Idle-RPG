@@ -71,7 +71,7 @@
         "stackable": true,
         "value": 2
     },
-        {
+    {
         "id": "cooked_shrimp",
         "name": "Cooked Shrimp",
         "description": "A Cooked shrimp used to restore HP",
@@ -80,7 +80,7 @@
         "stackable": true,
         "value": 2
     },
-       {
+    {
         "id": "raw_crab",
         "name": "Raw Crab",
         "description": "A raw crab used in cooking",
@@ -88,5 +88,49 @@
         "rarity":"Common",
         "stackable": true,
         "value": 2
+    },
+    {
+    "id": "raw_lobster",
+    "name": "Raw Lobster",
+    "description": "A raw lobster used in cooking.",
+    "category": "fish",
+    "rarity": "common",
+    "stackable": true,
+    "value": 10
+    },        {
+        "id": "cooked_lobster",
+        "name": "Cooked Lobster",
+        "description": "A Cooked Lobster used to restore HP",
+        "category": "food",
+        "rarity":"Common",
+        "stackable": true,
+        "value": 2
+    },
+    {
+        "id": "raw_sardine",
+        "name": "Raw Sardine",
+        "description": "A raw sardine used in cooking.",
+        "category": "fish",
+        "rarity": "common",
+        "stackable": true,
+        "value": 3
+    },
+    {
+        "id": "raw_herring",
+        "name": "Raw Herring",
+        "description": "A raw herring used in cooking.",
+        "category": "fish",
+        "rarity": "common",
+        "stackable": true,
+        "value": 4
+    },
+    {
+        "id": "raw_carp",
+        "name": "Raw Carp",
+        "description": "A raw carp used in cooking.",
+        "category": "fish",
+        "rarity": "common",
+        "stackable": true,
+        "value": 12
     }
 ]

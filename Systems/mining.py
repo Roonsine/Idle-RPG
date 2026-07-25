@@ -24,12 +24,13 @@ class MiningAction(Action):
             self.rock.amount
         )
 
-        player.skills["mining"].add_xp(
+        xp_result = player.skills["mining"].add_xp(
             self.rock.xp
         )
 
         return {
             "xp": self.rock.xp,
             "item": self.rock.ore_item_id,
-            "amount": self.rock.amount
+            "amount": self.rock.amount,
+            "skill_event":xp_result
         }

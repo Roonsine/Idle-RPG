@@ -12,6 +12,7 @@ from Engine.action_factory import ActionFactory
 from Engine.action_registry import ActionRegistry
 from Engine.activity_registry import ActivityRegistry
 from Engine.registry import Registry
+from Engine.unlock_manager import UnlockManager
 
 from Player import Player
 from Models.player_skill import PlayerSkill
@@ -30,6 +31,7 @@ class Game(QObject):
     action_completed = Signal(dict)
     inventory_changed = Signal()
     skill_changed = Signal()
+    level_up = Signal(dict)
 
     def __init__(self, data_directory: Path):
 
@@ -50,6 +52,7 @@ class Game(QObject):
 
         self.offline_progress = OfflineProgress()
 
+        self.unlock_manager = UnlockManager()
         self.action_manager = ActionManager()
         self.action_factory = ActionFactory()
         self.action_registry = ActionRegistry()
@@ -91,13 +94,32 @@ class Game(QObject):
             self.player,
             self.data
         )
-
-
         if result:
-            self.action_completed.emit(
-                result
+
+            skill_event = result.get(
+                "skill_event"
             )
 
+
+            if skill_event:
+
+                if skill_event["level_up"]:
+
+                    unlocks = (
+                        self.unlock_manager
+                        .check_unlocks(
+                            skill_event,
+                            self.data
+                        )
+                    )
+                    skill_event["unlocks"] = unlocks
+
+                    self.level_up.emit(
+                        skill_event
+                    )
+
+
+                self.skill_changed.emit()
 
         return result
     

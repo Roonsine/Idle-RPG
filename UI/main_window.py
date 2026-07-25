@@ -233,42 +233,53 @@ class MainWindow(QMainWindow):
             self.pages.show_page
         )
 
-
         self.sidebar.skill_selector.skill_selected.connect(
             self.activity_panel.set_skill
         )
-
 
         self.activity_panel.action_selected.connect(
             self.game.start_action
         )
 
-
         self.action_panel.stop_requested.connect(
             self.game.stop_action
         )
-
 
         self.game.action_changed.connect(
             self.action_panel.refresh
         )
 
-
         self.game.action_completed.connect(
             self.action_panel.show_reward
         )
-
 
         self.game.skill_changed.connect(
             self.skill_panel.refresh
         )
 
-
         self.game.inventory_changed.connect(
             self.inventory_panel.refresh
         )
 
+        self.game.level_up.connect(
+            self.show_level_up
+        )
 
+
+
+    def show_level_up(
+        self,
+        event
+    ):
+
+        print(
+            f"""
+    LEVEL UP!
+
+    {event['skill_id']}
+    {event['old_level']} -> {event['new_level']}
+    """
+        )
 
     def start_timer(self):
 
@@ -284,8 +295,6 @@ class MainWindow(QMainWindow):
             100
         )
 
-
-
     def update_game(self):
 
         result = self.game.update()
@@ -300,15 +309,11 @@ class MainWindow(QMainWindow):
 
         self.refresh()
 
-
-
     def refresh(self):
 
         for panel in self.refreshables:
 
             panel.refresh()
-
-
 
     def closeEvent(self, event):
 

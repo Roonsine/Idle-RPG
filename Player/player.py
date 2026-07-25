@@ -22,6 +22,10 @@ class Player:
     skills: dict[str, PlayerSkill] = field(
         default_factory=dict
     )
+     
+    unlocks: dict = field(
+        default_factory=dict
+    )
 
     equipment: dict[str, str] = field(
         default_factory=dict

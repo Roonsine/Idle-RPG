@@ -5,15 +5,15 @@
         "interval": 3,
         "level_required": 1,
         "fish": [{
-            "fish_id": "raw_shrimp",
+            "fish_id": "Raw shrimp",
             "weight": 1
         },
         {
-            "fish_id": "raw_lobster",
+            "fish_id": "Raw lobster",
             "weight": 2
         },
         {
-            "fish_id": "raw_crab",
+            "fish_id": "Raw crab",
             "weight": 3
         }]
     },
@@ -23,15 +23,15 @@
         "interval": 3,
         "level_required": 5,
         "fish": [{
-            "fish_id": "raw_sardine",
+            "fish_id": "Raw sardine",
             "weight": 1
         },
         {
-            "fish_id": "raw_herring",
+            "fish_id": "Raw herring",
             "weight": 2
         },
         {
-            "fish_id": "raw_carp",
+            "fish_id": "Raw carp",
             "weight": 3
         }]
     }

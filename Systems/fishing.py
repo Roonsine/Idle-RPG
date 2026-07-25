@@ -65,7 +65,7 @@ class FishingAction(Action):
         )
 
 
-        player.skills["fishing"].add_xp(
+        xp_result = player.skills["fishing"].add_xp(
             fish.xp
         )
 
@@ -76,6 +76,7 @@ class FishingAction(Action):
 
             "amount": 1,
 
-            "xp": fish.xp
+            "xp": fish.xp,
+            "skill_event":xp_result
 
         }

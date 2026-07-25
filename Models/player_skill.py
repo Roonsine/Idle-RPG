@@ -1,7 +1,8 @@
 from dataclasses import dataclass
-import config
 
-
+from Engine.xp_table import (
+    level_from_xp
+)
 
 
 @dataclass
@@ -9,56 +10,44 @@ class PlayerSkill:
 
     skill_id: str
 
-    level: int
+    level: int = 1
 
-    xp: float
+    xp: float = 0
 
     mastery_level: int = 1
 
     mastery_xp: float = 0
 
 
+    def add_xp(
+        self,
+        amount: float
+    ):
 
-    def add_xp(self, amount):
-
-        print(
-            "ADDING XP:",
-            self.skill_id,
-            amount
-        )
-        if self.level >= config.MAX_LEVEL:
-
-            self.level = config.MAX_LEVEL
-
-            self.xp = 0
-
-            return
+        old_level = self.level
 
 
         self.xp += amount
 
 
-        while self.level < config.MAX_LEVEL:
-
-            required = self.xp_required(
-                self.level
-            )
+        self.level = level_from_xp(
+            self.xp
+        )
 
 
-            if self.xp < required:
-
-                break
-
-
-            self.xp -= required
-
-            self.level += 1
-
+        result = {
+            "skill_id": self.skill_id,
+            "xp_gained": amount,
+            "old_level": old_level,
+            "new_level": self.level,
+            "level_up": self.level > old_level
+        }
 
 
-    def xp_required(
-        self,
-        level
-    ):
+        print(
+            "XP EVENT:",
+            result
+        )
 
-        return level * level * 100
+
+        return result

@@ -4,14 +4,14 @@
     "gold": 0,
     "skills": {
         "woodcutting": {
-            "level": 3,
-            "xp": 100,
+            "level": 19,
+            "xp": 4250,
             "mastery_level": 1,
             "mastery_xp": 0
         },
         "mining": {
-            "level": 1,
-            "xp": 45,
+            "level": 2,
+            "xp": 85,
             "mastery_level": 1,
             "mastery_xp": 0
         },
@@ -22,25 +22,28 @@
             "mastery_xp": 0
         },
         "fishing": {
-            "level": 1,
-            "xp": 45,
+            "level": 9,
+            "xp": 1020,
             "mastery_level": 1,
             "mastery_xp": 0
         },
         "cooking": {
-            "level": 2,
-            "xp": 90,
+            "level": 1,
+            "xp": 70,
             "mastery_level": 1,
             "mastery_xp": 0
         }
     },
     "inventory": {
-        "copper_ore": 9,
-        "cooked_shrimp": 9,
-        "normal_log": 5
+        "raw_shrimp": 167,
+        "raw_sardine": 15,
+        "cooked_shrimp": 7,
+        "normal_log": 111,
+        "oak_log": 26,
+        "copper_ore": 17
     },
     "equipment": {},
     "current_action": null,
-    "last_saved": "2026-07-23T20:07:01.038230",
+    "last_saved": "2026-07-24T21:48:12.053336",
     "last_loaded": ""
 }
