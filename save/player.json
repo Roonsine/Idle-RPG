@@ -23,7 +23,7 @@
         },
         "fishing": {
             "level": 27,
-            "xp": 10404,
+            "xp": 10444,
             "mastery_level": 1,
             "mastery_xp": 90
         },
@@ -35,7 +35,7 @@
         }
     },
     "inventory": {
-        "raw_shrimp": 1033,
+        "raw_shrimp": 1041,
         "raw_sardine": 15,
         "cooked_shrimp": 89,
         "normal_log": 80,
@@ -45,14 +45,14 @@
     },
     "equipment": {},
     "current_action": {
-        "action_id": "fishing_Trench_of_Despair_Raw Blowfish",
-        "action_type": "fishing",
-        "target_id": "Trench_of_Despair:Raw Blowfish",
-        "action_name": "Fishing Raw Blowfish",
-        "completed": 55,
-        "started_at": "2026-07-25T19:54:09.932169",
-        "completes_at": "2026-07-25T19:54:12.932169"
+        "action_id": "cook_shrimp",
+        "action_type": "cooking",
+        "target_id": "cook_shrimp",
+        "action_name": "Cook Shrimp",
+        "completed": 0,
+        "started_at": "2026-07-25T20:24:46.617761",
+        "completes_at": "2026-07-25T20:24:49.617761"
     },
-    "last_saved": "2026-07-25T19:54:12.380792",
+    "last_saved": "2026-07-25T20:24:49.299429",
     "last_loaded": ""
 }

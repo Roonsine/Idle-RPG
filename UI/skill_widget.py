@@ -131,6 +131,39 @@ class SkillWidget(QFrame):
             self.xp_label
         )
 
+                # Mastery level
+
+        self.mastery_label = QLabel()
+
+        layout.addWidget(
+            self.mastery_label
+        )
+
+
+        # Mastery XP bar
+
+        self.mastery_bar = QProgressBar()
+
+        self.mastery_bar.setRange(
+            0,
+            100
+        )
+
+        self.mastery_bar.setTextVisible(
+            False
+        )
+
+        layout.addWidget(
+            self.mastery_bar
+        )
+
+
+        self.mastery_percent = QLabel()
+
+        layout.addWidget(
+            self.mastery_percent
+        )
+
 
         # Unlock text
 
@@ -143,6 +176,7 @@ class SkillWidget(QFrame):
     def refresh(self):
 
         skill = self.skill
+        self.update_mastery()
 
 
         display_name = (
@@ -161,13 +195,10 @@ class SkillWidget(QFrame):
             f"Level {skill.level}"
         )
 
-
         if skill.level >= 99:
 
-            progress = 100
-
             self.progress_bar.setValue(
-                progress
+                100
             )
 
             self.progress_percent.setText(
@@ -176,9 +207,55 @@ class SkillWidget(QFrame):
 
             self.xp_label.setText(
                 "MAX LEVEL"
+
             )
 
-            return
+        else:
+
+            current_level_xp = xp_for_level(
+                skill.level
+            )
+
+
+            next_level_xp = xp_for_level(
+                skill.level + 1
+            )
+
+
+            xp_into_level = (
+                skill.xp -
+                current_level_xp
+            )
+
+
+            xp_needed = (
+                next_level_xp -
+                current_level_xp
+            )
+
+
+            progress = int(
+                (
+                    xp_into_level /
+                    xp_needed
+                )
+                * 100
+            )
+
+
+            self.progress_bar.setValue(
+                progress
+            )
+
+
+            self.progress_percent.setText(
+                f"{progress}%"
+            )
+
+
+            self.xp_label.setText(
+                f"{int(skill.xp)} / {next_level_xp} XP"
+            )
 
 
         current_level_xp = xp_for_level(
@@ -230,6 +307,66 @@ class SkillWidget(QFrame):
 
         self.update_unlock()
 
+    def update_mastery(self):
+
+        skill = self.skill
+
+
+        mastery_level = getattr(
+            skill,
+            "mastery_level",
+            0
+        )
+
+        mastery_xp = getattr(
+            skill,
+            "mastery_xp",
+            0
+        )
+
+
+        self.mastery_label.setText(
+            f"⭐ Mastery Level {mastery_level}"
+        )
+
+
+        #
+        # Temporary mastery curve
+        #
+        # We can replace this later
+        # with a proper mastery table.
+        #
+
+        xp_required = (
+            (mastery_level + 1)
+            * 100
+        )
+
+
+        progress = int(
+            (
+                mastery_xp /
+                xp_required
+            )
+            * 100
+        )
+
+
+        progress = min(
+            progress,
+            100
+        )
+
+
+        self.mastery_bar.setValue(
+            progress
+        )
+
+
+        self.mastery_percent.setText(
+            f"Mastery XP: {int(mastery_xp)} / {xp_required}"
+        )
+
     def update_unlock(self):
 
         """
@@ -245,6 +382,12 @@ class SkillWidget(QFrame):
         elif self.skill_id == "mining":
 
             self.check_mining_unlock()
+
+        elif self.skill_id =="fishing":
+            self.check_fishing_unlock()
+
+        elif self.skill_id == "cooking":
+            self.check_cooking_unlock()
 
 
         else:
@@ -306,4 +449,58 @@ class SkillWidget(QFrame):
 
         self.unlock_label.setText(
             "All rocks unlocked!"
+        )
+
+    def check_fishing_unlock(self):
+
+        current = self.skill.level
+
+
+        for fish_id in self.game.data.fish:
+
+            fish = self.game.data.fish.get(
+                fish_id
+            )
+
+
+            if fish.level_required > current:
+
+                self.unlock_label.setText(
+                    f"Next unlock:\n"
+                    f"⛏ {fish.name} "
+                    f"(Level {fish.level_required})"
+                )
+
+                return
+
+
+        self.unlock_label.setText(
+            "All fish unlocked!"
+        )
+
+    def check_cooking_unlock(self):
+
+        current = self.skill.level
+
+
+        for recipe_id in self.game.data.recipes:
+
+            recipes = self.game.data.recipes.get(
+                recipe_id
+            )
+
+
+            if recipes.level_required > current:
+
+                self.unlock_label.setText(
+                    f"Next unlock:\n"
+                    f"⛏ {recipes.name} "
+                    f"(Level {recipes.level_required})"
+                )
+
+                return
+
+
+        self.unlock_label.setText(
+            "All recipes unlocked!"
         )
