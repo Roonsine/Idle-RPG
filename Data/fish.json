@@ -43,7 +43,7 @@
     },
     {
         "id": "Raw Blowfish",
-        "name": "Raw Poisonfish",
+        "name": "Raw Blowfish",
         "level_required": 8,
         "xp": 12,
         "item_id": "raw_blowfish"

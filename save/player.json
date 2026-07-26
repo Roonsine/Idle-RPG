@@ -5,13 +5,13 @@
     "skills": {
         "woodcutting": {
             "level": 99,
-            "xp": 10000000000699.777,
-            "mastery_level": 1,
-            "mastery_xp": 165
+            "xp": 10000000001399.777,
+            "mastery_level": 2,
+            "mastery_xp": 865
         },
         "mining": {
-            "level": 2,
-            "xp": 110,
+            "level": 9,
+            "xp": 980,
             "mastery_level": 1,
             "mastery_xp": 0
         },
@@ -22,10 +22,10 @@
             "mastery_xp": 0
         },
         "fishing": {
-            "level": 26,
-            "xp": 9516,
+            "level": 27,
+            "xp": 10404,
             "mastery_level": 1,
-            "mastery_xp": 0
+            "mastery_xp": 90
         },
         "cooking": {
             "level": 8,
@@ -38,13 +38,21 @@
         "raw_shrimp": 1033,
         "raw_sardine": 15,
         "cooked_shrimp": 89,
-        "normal_log": 70,
-        "oak_log": 30,
-        "copper_ore": 22,
-        "raw_blowfish": 313
+        "normal_log": 80,
+        "oak_log": 39,
+        "copper_ore": 196,
+        "raw_blowfish": 387
     },
     "equipment": {},
-    "current_action": null,
-    "last_saved": "2026-07-25T19:12:55.516378",
+    "current_action": {
+        "action_id": "fishing_Trench_of_Despair_Raw Blowfish",
+        "action_type": "fishing",
+        "target_id": "Trench_of_Despair:Raw Blowfish",
+        "action_name": "Fishing Raw Blowfish",
+        "completed": 55,
+        "started_at": "2026-07-25T19:54:09.932169",
+        "completes_at": "2026-07-25T19:54:12.932169"
+    },
+    "last_saved": "2026-07-25T19:54:12.380792",
     "last_loaded": ""
 }

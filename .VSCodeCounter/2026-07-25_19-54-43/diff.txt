@@ -1,0 +1,45 @@
+Date : 2026-07-25 19:54:43
+Directory : d:\repo\Idle RPG
+Total : 13 files,  335 codes, 15 comments, 110 blanks, all 460 lines
+
+Languages
++----------+------------+------------+------------+------------+------------+
+| language | files      | code       | comment    | blank      | total      |
++----------+------------+------------+------------+------------+------------+
+| Python   |          8 |        232 |         15 |        108 |        355 |
+| JSON     |          4 |         95 |          0 |          1 |         96 |
+| Markdown |          1 |          8 |          0 |          1 |          9 |
++----------+------------+------------+------------+------------+------------+
+
+Directories
++----------------------------------------------+------------+------------+------------+------------+------------+
+| path                                         | files      | code       | comment    | blank      | total      |
++----------------------------------------------+------------+------------+------------+------------+------------+
+| .                                            |         13 |        335 |         15 |        110 |        460 |
+| . (Files)                                    |          1 |          8 |          0 |          1 |          9 |
+| Data                                         |          3 |         86 |          0 |          1 |         87 |
+| Engine                                       |          4 |         66 |          6 |         33 |        105 |
+| Models                                       |          1 |          4 |          0 |         -1 |          3 |
+| UI                                           |          3 |        162 |          9 |         76 |        247 |
+| save                                         |          1 |          9 |          0 |          0 |          9 |
++----------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++----------------------------------------------+----------+------------+------------+------------+------------+
+| filename                                     | language | code       | comment    | blank      | total      |
++----------------------------------------------+----------+------------+------------+------------+------------+
+| d:\repo\Idle RPG\Data\fish.json              | JSON     |         28 |          0 |          0 |         28 |
+| d:\repo\Idle RPG\Data\fishing_spots.json     | JSON     |         22 |          0 |          0 |         22 |
+| d:\repo\Idle RPG\Data\items.json             | JSON     |         36 |          0 |          1 |         37 |
+| d:\repo\Idle RPG\Engine\activity_registry.py | Python   |          0 |          0 |          1 |          1 |
+| d:\repo\Idle RPG\Engine\game.py              | Python   |         23 |          6 |         17 |         46 |
+| d:\repo\Idle RPG\Engine\mastery_manager.py   | Python   |         39 |          0 |         22 |         61 |
+| d:\repo\Idle RPG\Engine\unlock_manager.py    | Python   |          4 |          0 |         -7 |         -3 |
+| d:\repo\Idle RPG\Models\player_skill.py      | Python   |          4 |          0 |         -1 |          3 |
+| d:\repo\Idle RPG\README.md                   | Markdown |          8 |          0 |          1 |          9 |
+| d:\repo\Idle RPG\UI\main_window.py           | Python   |         52 |        -53 |         31 |         30 |
+| d:\repo\Idle RPG\UI\notification.py          | Python   |         55 |         62 |         18 |        135 |
+| d:\repo\Idle RPG\UI\notification_manager.py  | Python   |         55 |          0 |         27 |         82 |
+| d:\repo\Idle RPG\save\player.json            | JSON     |          9 |          0 |          0 |          9 |
+| Total                                        |          |        335 |         15 |        110 |        460 |
++----------------------------------------------+----------+------------+------------+------------+------------+

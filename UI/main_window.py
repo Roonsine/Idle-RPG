@@ -19,6 +19,7 @@ from UI.page_stack import PageStack
 from UI.action_panel import ActionPanel
 from UI.activity_panel import ActivityPanel
 from UI.sidebar import Sidebar
+from UI.notification_manager import NotificationManager
 
 
 class MainWindow(QMainWindow):
@@ -51,7 +52,7 @@ class MainWindow(QMainWindow):
 
 
         self.setup_ui()
-
+        self.notifications = NotificationManager(self)
         self.connect_signals()
 
         self.start_timer()
@@ -272,16 +273,43 @@ class MainWindow(QMainWindow):
         event
     ):
 
-        print(
-            f"\n🎉 {event['skill_id'].title()} Level {event['new_level']}!"
+        skill = self.game.data.skills.get(
+            event["skill_id"]
+        )
+
+
+        self.notifications.show(
+            "🎉",
+            "LEVEL UP!",
+            f"{skill.name} reached Level {event['new_level']}"
         )
 
 
         for unlock in event["unlocks"]:
 
-            print(
-                f"Unlocked {unlock['type']}: {unlock['name']}"
+            self.notifications.show(
+                "🔓",
+                "UNLOCKED",
+                unlock["name"],
+                "#55cc55"
             )
+
+    def show_mastery_level_up(
+    self,
+    event
+    ):
+
+        skill = self.game.data.skills.get(
+            event["skill_id"]
+        )
+
+
+        self.notifications.show(
+            "⭐",
+            "MASTERY LEVEL!",
+            f"{skill.name} Mastery {event['new_mastery_level']}",
+            "#4aa3ff"
+        )
 
     def start_timer(self):
 
